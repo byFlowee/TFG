@@ -1,0 +1,250 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Krizhevsky%
+, Sutskever%
+\BCBL {}\ \BBA {} E.~Hinton%
+}{%
+Krizhevsky%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2012}}%
+}]{%
+AlexNet}
+\APACinsertmetastar {%
+AlexNet}%
+\begin{APACrefauthors}%
+Krizhevsky, A.%
+, Sutskever, I.%
+\BCBL {}\ \BBA {} E.~Hinton, G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2012}{01}{}.
+\newblock
+{\BBOQ}\APACrefatitle {ImageNet Classification with Deep Convolutional Neural
+  Networks} {Imagenet classification with deep convolutional neural
+  networks}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Neural Information Processing Systems}{25}{}{}.
+\newblock
+\begin{APACrefDOI} \doi{10.1145/3065386} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Long%
+, Shelhamer%
+\BCBL {}\ \BBA {} Darrell%
+}{%
+Long%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2014}}%
+}]{%
+DBLP:journals/corr/LongSD14}
+\APACinsertmetastar {%
+DBLP:journals/corr/LongSD14}%
+\begin{APACrefauthors}%
+Long, J.%
+, Shelhamer, E.%
+\BCBL {}\ \BBA {} Darrell, T.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Fully Convolutional Networks for Semantic Segmentation}
+  {Fully convolutional networks for semantic segmentation}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{CoRR}{abs/1411.4038}{}{}.
+\newblock
+\begin{APACrefURL} \url{http://arxiv.org/abs/1411.4038} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Martinez{-}Gonzalez%
+\ \protect \BOthers {.}}{%
+Martinez{-}Gonzalez%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
+}]{%
+DBLP:journals/corr/abs-1810-06936}
+\APACinsertmetastar {%
+DBLP:journals/corr/abs-1810-06936}%
+\begin{APACrefauthors}%
+Martinez{-}Gonzalez, P.%
+, Oprea, S.%
+, Garcia{-}Garcia, A.%
+, Jover{-}Alvarez, A.%
+, Orts{-}Escolano, S.%
+\BCBL {}\ \BBA {} Rodr{\'{\i}}guez, J\BPBI G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {UnrealROX: An eXtremely Photorealistic Virtual Reality
+  Environment for Robotics Simulations and Synthetic Data Generation}
+  {Unrealrox: An extremely photorealistic virtual reality environment for
+  robotics simulations and synthetic data generation}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{CoRR}{abs/1810.06936}{}{}.
+\newblock
+\begin{APACrefURL} \url{http://arxiv.org/abs/1810.06936} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Puig%
+\ \protect \BOthers {.}}{%
+Puig%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
+}]{%
+virtualhome2018}
+\APACinsertmetastar {%
+virtualhome2018}%
+\begin{APACrefauthors}%
+Puig, X.%
+, Ra, K.%
+, Boben, M.%
+, Li, J.%
+, Wang, T.%
+, Fidler, S.%
+\BCBL {}\ \BBA {} Torralba, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {VirtualHome: Simulating Household Activities via
+  Programs} {Virtualhome: Simulating household activities via programs}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Computer Vision and Pattern Recognition (CVPR).}
+  {Computer vision and pattern recognition (cvpr).}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Simonyan%
+\ \BBA {} Zisserman%
+}{%
+Simonyan%
+\ \BBA {} Zisserman%
+}{%
+{\protect \APACyear {2015}}%
+}]{%
+DBLP:journals/corr/SimonyanZ14a}
+\APACinsertmetastar {%
+DBLP:journals/corr/SimonyanZ14a}%
+\begin{APACrefauthors}%
+Simonyan, K.%
+\BCBT {}\ \BBA {} Zisserman, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Very Deep Convolutional Networks for Large-Scale Image
+  Recognition} {Very deep convolutional networks for large-scale image
+  recognition}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {3rd International Conference on Learning
+  Representations, {ICLR} 2015, San Diego, CA, USA, May 7-9, 2015, Conference
+  Track Proceedings.} {3rd international conference on learning
+  representations, {ICLR} 2015, san diego, ca, usa, may 7-9, 2015, conference
+  track proceedings.}
+\newblock
+\begin{APACrefURL} \url{http://arxiv.org/abs/1409.1556} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Szegedy%
+\ \protect \BOthers {.}}{%
+Szegedy%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2014}}%
+}]{%
+DBLP:journals/corr/SzegedyLJSRAEVR14}
+\APACinsertmetastar {%
+DBLP:journals/corr/SzegedyLJSRAEVR14}%
+\begin{APACrefauthors}%
+Szegedy, C.%
+, Liu, W.%
+, Jia, Y.%
+, Sermanet, P.%
+, Reed, S\BPBI E.%
+, Anguelov, D.%
+\BDBL {}Rabinovich, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Going Deeper with Convolutions} {Going deeper with
+  convolutions}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{CoRR}{abs/1409.4842}{}{}.
+\newblock
+\begin{APACrefURL} \url{http://arxiv.org/abs/1409.4842} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Tobin%
+\ \protect \BOthers {.}}{%
+Tobin%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+DBLP:journals/corr/TobinFRSZA17}
+\APACinsertmetastar {%
+DBLP:journals/corr/TobinFRSZA17}%
+\begin{APACrefauthors}%
+Tobin, J.%
+, Fong, R.%
+, Ray, A.%
+, Schneider, J.%
+, Zaremba, W.%
+\BCBL {}\ \BBA {} Abbeel, P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Domain Randomization for Transferring Deep Neural
+  Networks from Simulation to the Real World} {Domain randomization for
+  transferring deep neural networks from simulation to the real world}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{CoRR}{abs/1703.06907}{}{}.
+\newblock
+\begin{APACrefURL} \url{http://arxiv.org/abs/1703.06907} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{Zeiler}%
+, {Taylor}%
+\BCBL {}\ \BBA {} {Fergus}%
+}{%
+{Zeiler}%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2011}}%
+}]{%
+deconvolution}
+\APACinsertmetastar {%
+deconvolution}%
+\begin{APACrefauthors}%
+{Zeiler}, M\BPBI D.%
+, {Taylor}, G\BPBI W.%
+\BCBL {}\ \BBA {} {Fergus}, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2011}{Nov}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Adaptive deconvolutional networks for mid and high level
+  feature learning} {Adaptive deconvolutional networks for mid and high level
+  feature learning}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {2011 International Conference on Computer Vision} {2011
+  international conference on computer vision}\ (\BPG~2018-2025).
+\newblock
+\begin{APACrefDOI} \doi{10.1109/ICCV.2011.6126474} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}
