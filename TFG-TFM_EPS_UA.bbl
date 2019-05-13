@@ -1,6 +1,36 @@
 \begin{thebibliography}{}
 
 \bibitem [\protect \citeauthoryear {%
+Badrinarayanan%
+, Kendall%
+\BCBL {}\ \BBA {} Cipolla%
+}{%
+Badrinarayanan%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+DBLP:journals/corr/BadrinarayananK15}
+\APACinsertmetastar {%
+DBLP:journals/corr/BadrinarayananK15}%
+\begin{APACrefauthors}%
+Badrinarayanan, V.%
+, Kendall, A.%
+\BCBL {}\ \BBA {} Cipolla, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {SegNet: {A} Deep Convolutional Encoder-Decoder
+  Architecture for Image Segmentation} {Segnet: {A} deep convolutional
+  encoder-decoder architecture for image segmentation}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{CoRR}{abs/1511.00561}{}{}.
+\newblock
+\begin{APACrefURL} \url{http://arxiv.org/abs/1511.00561} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Krizhevsky%
 , Sutskever%
 \BCBL {}\ \BBA {} E.~Hinton%

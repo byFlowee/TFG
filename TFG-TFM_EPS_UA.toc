@@ -15,6 +15,7 @@
 \contentsline {subsection}{\numberline {2.3.4}ResNet}{6}{subsection.2.3.4}% 
 \contentsline {subsection}{\numberline {2.3.5}ReNet}{6}{subsection.2.3.5}% 
 \contentsline {subsection}{\numberline {2.3.6}Semantic Segmentation Variants}{6}{subsection.2.3.6}% 
+\contentsline {subsubsection}{\numberline {2.3.6.1}Decoder Variant}{7}{subsubsection.2.3.6.1}% 
 \contentsline {section}{\numberline {2.4}Datasets}{7}{section.2.4}% 
 \contentsline {subsection}{\numberline {2.4.1}PASCAL}{7}{subsection.2.4.1}% 
 \contentsline {subsection}{\numberline {2.4.2}Semantic Boundaries Dataset}{7}{subsection.2.4.2}% 
