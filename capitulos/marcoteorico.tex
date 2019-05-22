@@ -49,14 +49,14 @@ $step_5$ = [Watch] (TELEVISION)(1) \newline
 \subsection{UnrealROX}
 UnrealROX \cite{DBLP:journals/corr/abs-1810-06936} is a photo-realistic 3D virtual environment built in \gls{ue4} capable of generating synthetic, ground-truth annotated data.
 
-\section{Common Arquitectures}
+\section{Common Architectures}
 As we previously stated, semantic segmentation is a natural step towards the more fine-grained image recognition problem, since the information that we are trying to infer is higher level, we will also require more complex architectures. Although the models we will be reviewing in this section work properly for image recognition and detection, some modifications will have to be made in order to adapt them for segmentation problems. However, they have made such significant contributions to the field that they are still being used as the basic building blocks segmentation architectures.
 
 \subsection{AlexNet}
 AlexNet was the first deep network architecture that successfully surpassed traditional machine learning approaches, winning the \gls{ilsvrc} 2012 with a 84.6\% TOP-5 test accuracy, easily surpassing the its competitors by a huge margin. The architecture itself was pretty straight forward. It consisted of five convolution + pooling layers followed by three fully connected ones as seen in figure \ref{alexnet}.
 
 
-\begin{figure}
+\begin{figure}[h]
 	\includegraphics[scale=0.3]{archivos/alexnet.png}
 	\centering
 	\caption{AlexNet architecture reproduced from \cite{AlexNet}}
@@ -82,11 +82,21 @@ ResNet was first introduced by Microsoft research and it got very popular after 
 \subsection{ReNet}
 Multi Dimensional Recurrent Neural Network (MDRNN) are a variation of regular RNN that allow them to work with $d$ spatio-temporal dimensions of the data. The architecture proposed by (cite) used regular RNN instead of MDRNN, where every convolution + pooling layer is replaced by four RNN's that sweep the image across in four directions. 
 
-\subsection{Semantic Segmentation Variants}
+\subsection{Semantic Segmentation Methods}
 All the image recognition problem solutions based on convolutional architectures, whether it is recognition, detection, localization or segmentation, they all share a big common module, which is the convolution layers that will extract the features of any image, after that we can adapt our network for our specific problem.
 
-Today, almost every semantic segmentation architecture uses the \gls{fcn} by \cite{DBLP:journals/corr/LongSD14}. The idea behind this is to replace the fully connected layers of previously well known architectures for image classification such as ResNet or GoogleNet with \gls{fcn} in order to obtain a spatial map instead classification outputs while still using the inferred knowledge of the previous architectures. Convolutional layers (convolution + pooling) downsample the input image in order to learn features, this downsampling does not matter when applied to classification problems, however, when doing pixel-wise classification, we require the output image to have the same size as the input. To overcome this problem, spatial maps are then upsampled by using deconvolution layers as shown in \cite{deconvolution} 
+Today, almost every semantic segmentation architecture uses the \gls{fcn} by \cite{DBLP:journals/corr/LongSD14}. The idea behind this is to replace the fully connected layers of previously well known architectures for image classification such as ResNet or GoogleNet with \gls{fcn} in order to obtain a spatial map instead classification outputs, this way we can obtain pixel-wise classification while still using the inferred knowledge and power of the \gls{cnn}'s. Convolutional layers (convolution + pooling) downsample the input image in order to learn features, this downsampling does not matter when applied to classification problems, however, when doing pixel-wise classification, we require the output image to have the same size as the input. To overcome this problem, spatial maps are then upsampled by using deconvolution layers as shown in \cite{deconvolution}.
 
+\subsubsection{Decoder Variant}
+The decoder variant is another method to adapt networks that were initially made for classification. In this variant, the network after removing the fully connected layers is normally called encoder and it outputs a low-resolution feature map. The second part of this variant is called decoder and the main idea behind it is to up-sample those feature maps to obtain a full resolution pixel-wise classification.
+
+One of the most known examples of this encoder-decoder architecture is SegNet \cite{DBLP:journals/corr/BadrinarayananK15}, the encoder part is fundamentally the same as a \gls{vgg}-16 without the fully connected layers at the very end, while the decoder part consists of a combination of convolution and upsampling layers that correspond to the max-pooling ones in the encoder. SegNet is a very simple architecture wich yields very good results and is relatively fast, which makes it a good starting point of any semantic segmentation problem.
+
+\todo{add segnet architecture fig}
+
+\subsubsection{Dilated Convolutions}
+Atrous convolutions or more commonly known, dilated convolutions
+  
 \section{Datasets}
 In this section we will review some of the most important datasets that are commonly used to train semantic segmentation architectures. 
 
@@ -94,7 +104,7 @@ In this section we will review some of the most important datasets that are comm
 PASCAL Visual Object Classes is one of the most popular 2D datasets for semantic segmentation. The challenge consists of 5 different competitions, 21 ground-truth annotated classes and a private test set to verify the accuracy of submitted models. Also there are a few extensions of this dataset such as PASCAL Context or PASCAL Part.
 
 \subsection{Semantic Boundaries Dataset}
-This dataset is an extension of the PASCAL dataset that provides semantic segmentation ground-truth annotations for all the images that were not labeled in the original dataset. SBD greatly increases the amount of data from the original PASCAL and because of this SBD is commonly used for deep learning architectures.
+This dataset is an extension of the PASCAL dataset that provides semantic segmentation ground-truth annotations for all the images that were not labeled in the original dataset. SBD greatly increases the amount of data from the original PASCAL and because of this is commonly used for deep learning architectures.
 
 \subsection{Cityscapes}
 Cityscapes is a urban dataset mainly used for instance and semantic segmentation. It contains over 25000 images and 30 different classes was recorded in 50 cities during different times of the day and year.
