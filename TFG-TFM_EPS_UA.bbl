@@ -1,6 +1,36 @@
 \begin{thebibliography}{}
 
 \bibitem [\protect \citeauthoryear {%
+Geiger%
+, Lenz%
+, Stiller%
+\BCBL {}\ \BBA {} Urtasun%
+}{%
+Geiger%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2013}}%
+}]{%
+Geiger2013IJRR}
+\APACinsertmetastar {%
+Geiger2013IJRR}%
+\begin{APACrefauthors}%
+Geiger, A.%
+, Lenz, P.%
+, Stiller, C.%
+\BCBL {}\ \BBA {} Urtasun, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Vision meets Robotics: The KITTI Dataset} {Vision meets
+  robotics: The kitti dataset}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{International Journal of Robotics Research
+  (IJRR)}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Krizhevsky%
 , Sutskever%
 \BCBL {}\ \BBA {} E.~Hinton%
