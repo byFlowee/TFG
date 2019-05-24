@@ -95,8 +95,17 @@ One of the most known examples of this encoder-decoder architecture is SegNet \c
 \todo{add segnet architecture fig}
 
 \subsubsection{Dilated Convolutions}
-Atrous convolutions or more commonly known, dilated convolutions
-  
+As we previously mentioned, \gls{cnn}'s generate significantly reduced spacial feature maps, to overcome this spatial reduction, dilated convolutions (also known as \textit{atrous} convolutions) can be used in order to aggregate multi-scale contextual information without down-scaling.
+
+The dilation rate can be modified by the upsampling factor. That way, a 1-dilated would be a regular convolution where every element has a receptive field of 1x1, in a 2-dilated every element has a 3x3 receptive field, in a 3-dilated every element has a 7x7 \todo{dilated conv fig}. This way the receptive field grows in a exponential way, while the parameters have a linear growth.
+
+Some of the most important works that make use of this technique are the aforementioned multi-context aggregation by \cite{yu2015multiscale} and DeepLab by \cite{DBLP:journals/corr/ChenPK0Y16}.
+
+\subsubsection{Conditional Random Fields}
+Deep \gls{cnn}s applied to semantic segmentation excel at classification tasks, however they still lack precision when it comes to spacial information and struggle to properly delineate the boundaries of objects. To overcome this, a last post-processing step in order to refine the output can be applied, for instance, \gls{crf}. \gls{crf}s make use of both low level pixel interaction as well as the multi-class inference pixel prediction of high level models.
+
+The DeepLab model by \cite{DBLP:journals/corr/ChenPK0Y16} makes use of \gls{crf} to refine their output, figure \todo{deeplab crf fig} shows the output of the CRF applied to the prediction output maps of their model. 
+
 \section{Datasets}
 In this section we will review some of the most important datasets that are commonly used to train semantic segmentation architectures. 
 
