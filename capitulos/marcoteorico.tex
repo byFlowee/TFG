@@ -8,17 +8,16 @@
 \chapter{State of Art}
 \label{marcoteorico}
 As we previously stated, semantic segmentation is a extremely important task in the field of computer vision due to it's value towards complete scene understanding.
-In this section we will review some of the most common and recent deep network architectures, data-sets and frameworks that tackle the semantic segmentation problem.
+In this chapter we will review some of the most common and recent deep network architectures, data-sets and frameworks that tackle the semantic segmentation problem.
 
 \section{Introduction}
-Before we dive into the next sections it is important to understand semantic segmentation and where it comes from. Semantic segmentation is a natural evolution of the object recognition problem, the goal is to infer the class for every pixel on the image, obtaining a pixel-by-pixel labeled image
-. 
-Semantic segmentation is not so different from classic object recognition, in fact it's fundamentally the same, it just adds an extra layer of complexity towards the more fine-grained solutions. We could go further and try to differentiate instances of the same class, that would be instance segmentation. \todo{image recognition grain figure}
+Before we dive into the next sections it is important to understand semantic segmentation and where it comes from. Semantic segmentation is a natural evolution of the object recognition problem, the goal is to infer the class for every pixel on the image, obtaining a pixel-by-pixel labeled image. 
+Semantic segmentation is not so different from classic object recognition, in fact it's fundamentally the same, it just adds an extra layer of complexity towards a more fine-grained solution. We could go further and try to differentiate instances of the same class, that would be instance segmentation. \todo{image recognition grain figure}
 
 \section{Sim 2 Real}
 In the last decade, data driven algorithms have vastly surpassed traditional techniques for computer vision problems, these algorithms, although can be tuned and improved in many different ways, still require vast amounts of quality, precisely annotated data in order to yield good results. In the real world environment, there are quite a few limitations to the quantity and quality of the data that can be produced. For instance, we could be limited to the number of cameras and annotators, moving physical objects to setup scenes could also be difficult and time consuming, and dangerous situations could be risky to set up properly i.e trying to get an autonomous car to learn to avoid pedestrians when there is no time to brake.
     
-Sim2Real is a specific section of the data science field that mainly focuses on the automatic generation and ground-truth annotation of synthetic data by simulating the real world in a virtual environment. Although a virtual environment will allow us to workaround the previously mentioned restrictions, there's still a reality gap that must be covered in order for the synthetic data to be transferred to real life situations. Most synthetic data scenarios will present discrepancies between them and the real-world, to overcome this and properly transfer the knowledge to real problems there are two known approaches that have been proven to be effective. The first one and probably the most obvious is to generate extremely realistic environments, to achieve this multiple techniques can be applied, such as rendering very high and photo-realistic textures, models and lightning or simulating the noise of real cameras by applying filters and post-process effects. The other method, domain randomization \cite{DBLP:journals/corr/TobinFRSZA17} which is based on showing the model a huge amount of different synthetic data, with this method even if the data is not extremely accurate to real data, the variability of the multiple range of data will make up for it and the model will learn.
+Sim2Real is a specific section of the data science field that mainly focuses on the automatic generation and ground-truth annotation of synthetic data by simulating the real world in a virtual environment. Although a virtual environment will allow us to workaround the previously mentioned restrictions, there's still a reality gap that must be covered in order for the synthetic data to be transferred to real life situations. Most synthetic data scenarios will present discrepancies between them and the real-world, to overcome this and properly transfer the knowledge to real problems there are two known approaches that have been proven to be effective. The first one and probably the most obvious is to generate extremely realistic environments, to achieve this multiple techniques can be applied, such as rendering very high and photo-realistic textures, models and lightning or simulating the noise of real cameras by applying filters and post-process effects. The other method, domain randomization \cite{DBLP:journals/corr/TobinFRSZA17} which is based on showing the model a huge amount of different synthetic data, with this method even if the data is not represented with extreme fidelity, the variability of the multiple range of samples will make up for it and the model will learn.
 
 In this section we will review some of the latest works on the field.
 
@@ -46,8 +45,17 @@ $step_4$ = [Sit] (SOFA)(1)
 
 $step_5$ = [Watch] (TELEVISION)(1) \newline
 
+Another example this time with the scratch block interface can be seen in figure \ref{fig:virtualhome_example}.
+
+\begin{figure}[h]
+	\includegraphics[scale=0.5]{archivos/virtualhome_example.png}
+	\centering
+	\caption{List of actions represented with the scratch interface, where the user can manually add, modify and change the arguments of every action.}
+	\label{fig:virtualhome_example}
+\end{figure}
+
 \subsection{UnrealROX}
-UnrealROX \cite{DBLP:journals/corr/abs-1810-06936} is a photo-realistic 3D virtual environment built in \gls{ue4} capable of generating synthetic, ground-truth annotated data.
+UnrealROX \cite{DBLP:journals/corr/abs-1810-06936} is a photo-realistic 3D virtual environment built in \gls{ue4} capable of generating synthetic, ground-truth annotated data. Unlike VirtualHome, the main method to record sequences is to actually control the actors manually making use of the \gls{vr} headset and controllers, this will be further explained in the following chapters.
 
 \section{Common Architectures}
 As we previously stated, semantic segmentation is a natural step towards the more fine-grained image recognition problem, since the information that we are trying to infer is higher level, we will also require more complex architectures. Although the models we will be reviewing in this section work properly for image recognition and detection, some modifications will have to be made in order to adapt them for segmentation problems. However, they have made such significant contributions to the field that they are still being used as the basic building blocks segmentation architectures.
@@ -90,9 +98,14 @@ Today, almost every semantic segmentation architecture uses the \gls{fcn} by \ci
 \subsubsection{Decoder Variant}
 The decoder variant is another method to adapt networks that were initially made for classification. In this variant, the network after removing the fully connected layers is normally called encoder and it outputs a low-resolution feature map. The second part of this variant is called decoder and the main idea behind it is to up-sample those feature maps to obtain a full resolution pixel-wise classification.
 
-One of the most known examples of this encoder-decoder architecture is SegNet \cite{DBLP:journals/corr/BadrinarayananK15}, the encoder part is fundamentally the same as a \gls{vgg}-16 without the fully connected layers at the very end, while the decoder part consists of a combination of convolution and upsampling layers that correspond to the max-pooling ones in the encoder. SegNet is a very simple architecture wich yields very good results and is relatively fast, which makes it a good starting point of any semantic segmentation problem.
+One of the most known examples of this encoder-decoder architecture is SegNet \cite{DBLP:journals/corr/BadrinarayananK15}, the encoder part is fundamentally the same as a \gls{vgg}-16 without the fully connected layers at the very end, while the decoder part consists of a combination of convolution and upsampling layers that correspond to the max-pooling ones in the encoder, the whole architecture can be seen in figure \ref{fig:segnet}. SegNet is a very simple architecture wich yields very good results and is relatively fast, which makes it a good starting point of any semantic segmentation problem.
 
-\todo{add segnet architecture fig}
+\begin{figure}[h]
+	\includegraphics[scale=0.5]{archivos/segnet.png}
+	\centering
+	\caption{Segnet architecture graph extracted from \cite{DBLP:journals/corr/BadrinarayananK15}}
+	\label{fig:segnet}
+\end{figure}
 
 \subsubsection{Dilated Convolutions}
 As we previously mentioned, \gls{cnn}'s generate significantly reduced spacial feature maps, to overcome this spatial reduction, dilated convolutions (also known as \textit{atrous} convolutions) can be used in order to aggregate multi-scale contextual information without down-scaling.
