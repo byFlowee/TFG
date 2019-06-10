@@ -19,7 +19,23 @@ This is the main class that contains all the logic for the character controller 
 \subsection{The ROXBotPawn Class}
 The ROXBotPawn class inherits from ROXBasePawn and will handle all the logic for the automation of tasks of any \textit{Pawn} within a scene. In order to model all the different actions and interactions the Enum $EActionType$ was created, here the programmer can add any type of action to be built into the system.
 
-Also in order to model the actions themselves the $FROXAction$ struct was built, containing a $AActor*$ target, as well as the type of action $EActionType$.
+Also in order to model the actions themselves, the $FROXAction$ struct was built, containing a pointer to the target, as well as the type of action $EActionType$, the structure is shown in listing \ref{code:actionStruct}.
+
+\begin{listing}[language=C++, caption=FROXAction struct, frame=single, label=code:actionStruct]
+	USTRUCT(BlueprintType)
+	struct FROXAction
+	{
+		GENERATED_USTRUCT_BODY()
+		UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Pathfinding)
+		AActor* target;
+		
+		UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Pathfinding)
+		EActionType action;
+		
+		FROXAction() : target(nullptr), action(EActionType::MoveTo) {};
+		FROXAction(AActor* tg, EActionType t) : target(tg), action(t) {};
+	}
+\end{listing}
 
 In order for the programmer to add actions and queue them from the \gls{ue4} editor we built the $doAction(AActor*, EActionType)$ and made it BlueprintCallable, this way, in a simple way actions can be queued from the editor and the $Pawn$ will execute them in a sequential order as seen in figure \ref{action_queue}.
 

@@ -28,8 +28,6 @@ The main advantages \gls{ue4} offers over other game engines and the reason Unre
 \end{figure}
 \footnotetext{\url{https://ue4arch.com/projects/viennese-apartment/}}
 
-
-
 \section{Frameworks}
 
 In this section, we will go trough some of the most recent and popular \gls{dl} frameworks.
@@ -51,7 +49,71 @@ Keras provides two different API's for different model building approaches. The 
 \subsection{PyTorch}
 PyTorch is an open source, Python-based computing package and machine learning framework.
 
-PyTorch was the framework of choice for this project since it allows for easy prototyping without losing the flexibility make architectural modifications to the networks. Its syntax is also very easy for anyone that has experience with python which made it perfect for this project.
+PyTorch was the framework of choice for this project since it allows for easy prototyping without losing the flexibility to make architectural modifications to the networks. Its syntax is also very easy for anyone that has experience with python which made it perfect for this project.
 
-\subsection{UnrealROX}
- 
+\section{Hardware}
+It is widely known how computationally demanding \gls{dl} algorithms are, specially when dealing with large amounts of data. Also, in order to smoothly run \gls{ue4} while recording and generating all the masks we need a mid to high end computer. In this section we review the ones that have been mainly used in this work.
+
+\subsection{Asimov}
+
+The structure of neural networks where multiple data streams are organized in layers allow for very easy paralelization. Because of this GPU's are extremely powerful when executing said algorithms.
+
+The Asimov server was deployed with this in mind and features three different NVIDIA GPUs. The most powerful of them, the Titan X is aimed towards \gls{dl} computing, the Tesla K40 is also used for computational purposes. The last of them is a GTX 730 that will only be used for visualization purposes. The full hardware specification for the Asimov server is shown in Figure \ref{table:asimov}.
+
+As for the software, Asimov runs Ubuntu 16.04 with Linux kernel 4.4.0-21-generic for x86\_64 architecture. It also runs Docker, which allows any user to configure its own container with any CUDA / CUDNN version and DL framework.
+
+Also, it is worth mentioning  Asimov was configured for remote access using SSH with public/private key pair authentication. The installed versions are OpenSSH 7.2p2 with OpenSSL 1.0.2 and X11 forwarding was configured for visualization purposes.
+
+\begin{table}[h]
+	\centering 
+	\begin{tabular}{c p{7cm}}
+		\hline
+		\multicolumn{2}{c}{Asimov} \\ [0.5ex] 
+		\hline
+		Motherboard & Asus X99-A \newline Intel X99 Chipset \newline 4x PCIe 3.0/2.0 x 16(x16, x16/ x16, x16/ x16/ x8) \\ 
+		\hline
+		CPU & Intel(R) Core(TM) i7-5820K CPU @ 3.3GHz \newline 3.3 GHz (3.6 GHz Turbo Boost) \newline 6 cores (12 threads) \newline 65 W TDP \\
+		\hline
+		GPU (visualization) & NVIDIA GeForce GT730 \newline 96 CUDA cores \newline 1024 MiB of DDR3 Video Memory \newline PCIe 2.0 \newline 49 W TDP \\
+		\hline
+		GPU (deep learning) & NVIDIA GeForce Titan X \newline 3072 CUDA cores \newline 12 GiB of GDDR5 Video Memory \newline PCIe 3.0 \newline 250 W TDP\\
+		\hline
+		GPU (compute) & NVIDIA Tesla K40c \newline 2880 CUDA cores \newline 12 GiB of GDDR5 Video Memory \newline PCIe 3.0 \newline 235 W TDP \\
+		\hline
+		RAM & 4 x 8 GiB Kingston Hyper X DDR4 2666 MHz CL13 \\
+		\hline
+		Storage (Data) & (RAID1) Seagate Barracuda 7200rpm 3TiB SATA III HDD \\
+		\hline
+		Storage (OS) & Samsung 850 EVO 500GiB SATA III SSD \\
+		\hline
+	\end{tabular}
+	\caption{Hardware specification for Asimov.}
+	\label{table:asimov}
+\end{table}
+
+\subsection{Personal Computer}
+During the developing of this work, my personal computer was used in order to run \gls{ue4} and UnrealROX, as well as generating the data used for the deep learning experimentation. Table \ref{table:pc} shows the full hardware specification.
+
+\begin{table}[h]
+	\centering 
+	\begin{tabular}{c p{7cm}}
+		\hline
+		\multicolumn{2}{c}{Personal Computer} \\ [0.5ex] 
+		\hline
+		Motherboard & Asus STRIX X370-F \newline Amd X370 Chipset \newline 2 x PCIe 3.0/2.0 x16 (x16 or dual x8)  \\ 
+		\hline
+		CPU & AMD Ryzen™ 5 1600 CPU @ 3.2GHz \newline 3.2 GHz (3.6 GHz Turbo Boost) \newline 6 cores (12 threads) \newline 140 W TDP \\
+		\hline
+		GPU & NVIDIA GeForce GTX960 \newline 1024 CUDA cores \newline 2048 MiB of DDR5 Video Memory \newline PCIe 3.0 \newline 120 W TDP \\
+		\hline
+		RAM & 2 x 8 GiB G.Skill Trident Z DDR4 3200 MHz CL15 \\
+		\hline
+		Storage (Data) & Seagate Barracuda 7200rpm 2TiB SATA HDD \\
+		\hline
+		Storage (OS) & Samsung 960 EVO 250GiB NVMe M.2 SSD \\
+		\hline
+
+	\end{tabular}
+	\caption{Hardware specification for my personal computer.}
+	\label{table:pc}
+\end{table}

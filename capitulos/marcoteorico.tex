@@ -14,6 +14,45 @@ In this chapter we will review some of the most common and recent deep network a
 Before we dive into the next sections it is important to understand semantic segmentation and where it comes from. Semantic segmentation is a natural evolution of the object recognition problem, the goal is to infer the class for every pixel on the image, obtaining a pixel-by-pixel labeled image. 
 Semantic segmentation is not so different from classic object recognition, in fact it's fundamentally the same, it just adds an extra layer of complexity towards a more fine-grained solution. We could go further and try to differentiate instances of the same class, that would be instance segmentation. \todo{image recognition grain figure}
 
+\begin{figure*}
+	\centering
+	\begin{subfigure}[b]{0.475\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{archivos/cat.jpg}
+		\caption[Network2]%
+		{{\small Network 1}}    
+		\label{fig:mean and std of net14}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.475\textwidth}  
+		\centering 
+		\includegraphics[width=\textwidth]{archivos/cat_localization.png}
+		\caption[]%
+		{{\small Network 2}}    
+		\label{fig:mean and std of net24}
+	\end{subfigure}
+	\vskip\baselineskip
+	\begin{subfigure}[b]{0.475\textwidth}   
+		\centering 
+		\includegraphics[width=\textwidth]{Example-Image}
+		\caption[]%
+		{{\small Network 3}}    
+		\label{fig:mean and std of net34}
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[b]{0.475\textwidth}   
+		\centering 
+		\includegraphics[width=\textwidth]{Example-Image}
+		\caption[]%
+		{{\small Network 4}}    
+		\label{fig:mean and std of net44}
+	\end{subfigure}
+
+	\caption[ The average and standard deviation of critical parameters ]
+	{\small The average and standard deviation of critical parameters: Region R4} 
+	\label{fig:mean and std of nets}
+\end{figure*}
+
 \section{Sim 2 Real}
 In the last decade, data driven algorithms have vastly surpassed traditional techniques for computer vision problems, these algorithms, although can be tuned and improved in many different ways, still require vast amounts of quality, precisely annotated data in order to yield good results. In the real world environment, there are quite a few limitations to the quantity and quality of the data that can be produced. For instance, we could be limited to the number of cameras and annotators, moving physical objects to setup scenes could also be difficult and time consuming, and dangerous situations could be risky to set up properly i.e trying to get an autonomous car to learn to avoid pedestrians when there is no time to brake.
     
