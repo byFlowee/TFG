@@ -50,4 +50,12 @@ The $doAction()$ method creates a $FROXActions$ and pushes it to the queue. When
 
 \todo{EQS and Naive MoveToActor methods of the UE4 Character class}
 
-Additional, pathfinding and movement logic was implemented in order to define a $MoveTo$ action. For this purpose the NavigationMesh component of \gls{ue4} was used along with the $FindPathToActorSynchronously$ method, which returns a $UNavigationPath$ containing all the path-points from one actor to another. Once we obtain the pathpoints the $VInterpConstantTo$ from the FMath library and the $RInterpTo_Constant$ from the UKismeMathLibrary are used in order to obtain the next vector transformation for both position and rotation of the $Pawn$. These methods interpolate the current location with the next path-point location in order to achieve a smooth transition and make the movement more natural.
+
+Additionally, pathfinding and movement logic was implemented in order to define the $MoveTo$ action. In a first approach, the MoveTo method of the  For this purpose the NavigationMesh component of \gls{ue4} was used along with the $FindPathToActorSynchronously$ method, which returns a $UNavigationPath$ containing all the path-points from one actor to another. Once we obtain the pathpoints the $VInterpConstantTo$ from the FMath library and the $RInterpTo_Constant$ from the UKismeMathLibrary are used in order to obtain the next vector transformation for both position and rotation of the $Pawn$, this movemement logic can be seen in listing \ref{code:movementLogic}. These methods interpolate the current location with the next path-point location in order to achieve a smooth transition and make the movement more natural.
+
+\begin{listing}[language=C++, caption=Movement logic for the pathfinding algorithm, frame=single, label=code:movementLogic]
+	FVector nextPos = FMath::VInterpConstantTo(this->ActorLocation(), FVector(pathPoints[i].X, pathPoints[i].Y, ActorLocation().Z), DeltaTime, vel);
+	FRotator nextRot = UKismetMathLibrary::RInterpTo_Constant(ActorRotation(), UKismetMathLibrary::FindLookAtRotation(ActorLocation(), nextPos), DeltaTime, rotateVel);
+	SetActorRotation(nextRot);
+	SetActorLocation(nextPos);
+\end{listing}

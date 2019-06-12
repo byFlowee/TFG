@@ -8,52 +8,35 @@
 \chapter{State of Art}
 \label{marcoteorico}
 As we previously stated, semantic segmentation is a extremely important task in the field of computer vision due to it's value towards complete scene understanding.
-In this chapter we will review some of the most common and recent deep network architectures, data-sets and frameworks that tackle the semantic segmentation problem.
+In section \ref{sec:sim2real} we will delineate the importance of the Sim To Real field, as well as review some works on the matter. In Section \ref{sec:architectures} we cover some of the most common and recent deep network architectures. Finally in Section \ref{sec:datasets} we take a look at some of the most important data-sets and frameworks that tackle the semantic segmentation problem. 
 
 \section{Introduction}
 Before we dive into the next sections it is important to understand semantic segmentation and where it comes from. Semantic segmentation is a natural evolution of the object recognition problem, the goal is to infer the class for every pixel on the image, obtaining a pixel-by-pixel labeled image. 
-Semantic segmentation is not so different from classic object recognition, in fact it's fundamentally the same, it just adds an extra layer of complexity towards a more fine-grained solution. We could go further and try to differentiate instances of the same class, that would be instance segmentation. \todo{image recognition grain figure}
+Semantic segmentation is not so different from classic object recognition, in fact it's fundamentally the same, it just adds an extra layer of complexity towards a more fine-grained solution. We could go further and try to differentiate instances of the same class, that would be instance segmentation, Figure \ref{fig:object_recognition} shows the different object recognition solutions from less to more complex.
 
-\begin{figure*}
+\begin{figure} [h]
 	\centering
-	\begin{subfigure}[b]{0.475\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{archivos/cat.jpg}
-		\caption[Network2]%
-		{{\small Network 1}}    
-		\label{fig:mean and std of net14}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}[b]{0.475\textwidth}  
-		\centering 
-		\includegraphics[width=\textwidth]{archivos/cat_localization.png}
-		\caption[]%
-		{{\small Network 2}}    
-		\label{fig:mean and std of net24}
-	\end{subfigure}
-	\vskip\baselineskip
-	\begin{subfigure}[b]{0.475\textwidth}   
-		\centering 
-		\includegraphics[width=\textwidth]{Example-Image}
-		\caption[]%
-		{{\small Network 3}}    
-		\label{fig:mean and std of net34}
-	\end{subfigure}
-	\quad
-	\begin{subfigure}[b]{0.475\textwidth}   
-		\centering 
-		\includegraphics[width=\textwidth]{Example-Image}
-		\caption[]%
-		{{\small Network 4}}    
-		\label{fig:mean and std of net44}
-	\end{subfigure}
-
-	\caption[ The average and standard deviation of critical parameters ]
-	{\small The average and standard deviation of critical parameters: Region R4} 
-	\label{fig:mean and std of nets}
-\end{figure*}
+	\begin{tabular}{cccc}
+		\includegraphics[width=0.223\textwidth]{archivos/cat_classification.png} &
+		\includegraphics[width=0.223\textwidth]{archivos/cat_localization.png} &
+		\includegraphics[width=0.4\textwidth]{archivos/cats_localization.png} \\
+		\textbf{(a)}  & \textbf{(b)} & \textbf{(c)}  \\[6pt]
+	\end{tabular}
+	\begin{tabular}{cccc}
+		\includegraphics[width=0.4\textwidth]{archivos/cats_semantic_segmentation.png} &
+		\includegraphics[width=0.4\textwidth]{archivos/cats_instance_segmentation.png} \\
+		\textbf{(d)}  & \textbf{(e)}  \\[6pt]
+	\end{tabular}
+	\caption{ \textbf{(a)} Object detection
+		\textbf{(b)} Object localization
+		\textbf{(c)} Multiple object localization
+		\textbf{(a)} Semantic segmentation
+		\textbf{(b)} Instance segmentation.}
+	\label{fig:object_recognition}
+\end{figure}
 
 \section{Sim 2 Real}
+\label{sec:sim2real}
 In the last decade, data driven algorithms have vastly surpassed traditional techniques for computer vision problems, these algorithms, although can be tuned and improved in many different ways, still require vast amounts of quality, precisely annotated data in order to yield good results. In the real world environment, there are quite a few limitations to the quantity and quality of the data that can be produced. For instance, we could be limited to the number of cameras and annotators, moving physical objects to setup scenes could also be difficult and time consuming, and dangerous situations could be risky to set up properly i.e trying to get an autonomous car to learn to avoid pedestrians when there is no time to brake.
     
 Sim2Real is a specific section of the data science field that mainly focuses on the automatic generation and ground-truth annotation of synthetic data by simulating the real world in a virtual environment. Although a virtual environment will allow us to workaround the previously mentioned restrictions, there's still a reality gap that must be covered in order for the synthetic data to be transferred to real life situations. Most synthetic data scenarios will present discrepancies between them and the real-world, to overcome this and properly transfer the knowledge to real problems there are two known approaches that have been proven to be effective. The first one and probably the most obvious is to generate extremely realistic environments, to achieve this multiple techniques can be applied, such as rendering very high and photo-realistic textures, models and lightning or simulating the noise of real cameras by applying filters and post-process effects. The other method, domain randomization \cite{DBLP:journals/corr/TobinFRSZA17} which is based on showing the model a huge amount of different synthetic data, with this method even if the data is not represented with extreme fidelity, the variability of the multiple range of samples will make up for it and the model will learn.
@@ -97,6 +80,7 @@ Another example this time with the scratch block interface can be seen in figure
 UnrealROX \cite{DBLP:journals/corr/abs-1810-06936} is a photo-realistic 3D virtual environment built in \gls{ue4} capable of generating synthetic, ground-truth annotated data. Unlike VirtualHome, the main method to record sequences is to actually control the actors manually making use of the \gls{vr} headset and controllers, this will be further explained in the following chapters.
 
 \section{Common Architectures}
+\label{sec:architectures}
 As we previously stated, semantic segmentation is a natural step towards the more fine-grained image recognition problem, since the information that we are trying to infer is higher level, we will also require more complex architectures. Although the models we will be reviewing in this section work properly for image recognition and detection, some modifications will have to be made in order to adapt them for segmentation problems. However, they have made such significant contributions to the field that they are still being used as the basic building blocks segmentation architectures.
 
 \subsection{AlexNet}
@@ -159,10 +143,18 @@ Deep \gls{cnn}s applied to semantic segmentation excel at classification tasks, 
 The DeepLab model by \cite{DBLP:journals/corr/ChenPK0Y16} makes use of \gls{crf} to refine their output, figure \todo{deeplab crf fig} shows the output of the CRF applied to the prediction output maps of their model. 
 
 \section{Datasets}
+\label{sec:datasets}
 In this section we will review some of the most important datasets that are commonly used to train semantic segmentation architectures. 
 
 \subsection{PASCAL}
-PASCAL Visual Object Classes is one of the most popular 2D datasets for semantic segmentation. The challenge consists of 5 different competitions, 21 ground-truth annotated classes and a private test set to verify the accuracy of submitted models. Also there are a few extensions of this dataset such as PASCAL Context or PASCAL Part.
+PASCAL Visual Object Classes is one of the most popular 2D datasets for semantic segmentation. The challenge consists of 5 different competitions, 21 ground-truth annotated classes and a private test set to verify the accuracy of submitted models. Also there are a few extensions of this dataset such as PASCAL Context which provides pixel-level classification for the entire original dataset classes although only 59 of them are usually taken into account when working with classification problems since the rest of them are too rare, so they are normally considered as background. Another extension for the PASCAL dataset that is worth mentioning is PASCAL Part, which further decomposes the instances in smaller classes, for instance a car could be decomposed into wheels, chassis, headlights and windows, figure \ref{fig:pascal_part} shows more examples of different classes.
+
+\begin{figure}[h]
+	\includegraphics[scale=0.35]{archivos/pascal_part.png}
+	\centering
+	\caption{PASCAL Part examples of ground truth annotated parts for different classes.}
+	\label{fig:pascal_part}
+\end{figure}
 
 \subsection{Semantic Boundaries Dataset}
 This dataset is an extension of the PASCAL dataset that provides semantic segmentation ground-truth annotations for all the images that were not labeled in the original dataset. SBD greatly increases the amount of data from the original PASCAL and because of this is commonly used for deep learning architectures.
