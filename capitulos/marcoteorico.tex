@@ -7,12 +7,12 @@
 
 \chapter{State of Art}
 \label{marcoteorico}
-As we previously stated, semantic segmentation is a extremely important task in the field of computer vision due to it's value towards complete scene understanding.
-In section \ref{sec:sim2real} we will delineate the importance of the Sim To Real field, as well as review some works on the matter. In Section \ref{sec:architectures} we cover some of the most common and recent deep network architectures. Finally in Section \ref{sec:datasets} we take a look at some of the most important data-sets and frameworks that tackle the semantic segmentation problem. 
+As we previously stated, semantic segmentation is a extremely important task in the field of computer vision due to its enormous value towards complete scene understanding. This chapter is organized as follows: Section \ref{sec:intro} will give a brief introduction to the Semantic segmentation problem. In section \ref{sec:sim2real} we will delineate the importance of the Sim To Real field, as well as review some of the latest works on the matter. In Section \ref{sec:architectures} we cover several of the most important and recent deep network architectures. Finally in Section \ref{sec:datasets} we take a look at some of the most important data-sets and frameworks that tackle the semantic segmentation problem. 
 
 \section{Introduction}
-Before we dive into the next sections it is important to understand semantic segmentation and where it comes from. Semantic segmentation is a natural evolution of the object recognition problem, the goal is to infer the class for every pixel on the image, obtaining a pixel-by-pixel labeled image. 
-Semantic segmentation is not so different from classic object recognition, in fact it's fundamentally the same, it just adds an extra layer of complexity towards a more fine-grained solution. We could go further and try to differentiate instances of the same class, that would be instance segmentation, Figure \ref{fig:object_recognition} shows the different object recognition solutions from less to more complex.
+\label{sec:intro}
+Before we dive into the next sections it is important to understand the semantic segmentation problem and where it comes from. Semantic segmentation is a natural evolution of the object recognition problem, the goal is to infer the class for every pixel on the image, obtaining a pixel-by-pixel labeled output. 
+Semantic segmentation is not so different from classic object recognition, in fact it is fundamentally the same, it just adds an extra layer of complexity towards a more fine-grained solution. We could go further and try to differentiate instances of the same class, that would be instance segmentation, Figure \ref{fig:object_recognition} shows the different object recognition solutions from less to more complex.
 
 \begin{figure} [h]
 	\centering
@@ -95,10 +95,12 @@ AlexNet was the first deep network architecture that successfully surpassed trad
 \end{figure}
 
 \subsection{VGG}
-VGG is also a deep network model introduced by the \gls{vgg}, one of the various model configurations proposed \cite{DBLP:journals/corr/SimonyanZ14a} was submitted to the \gls{ilsvrc} 2013. The VGG-16 achieved 92.7\% TOP-5 test accuracy.
+VGG (\cite{DBLP:journals/corr/SimonyanZ14a}) is also a deep network model introduced by the \gls{vgg}, one of the various model configurations proposed was submitted to the \gls{ilsvrc} 2013. The VGG-16 achieved 92.7\% TOP-5 test accuracy.
+
+The structure of VGG-16 is also quite simple and not too deep, as its own name hints, it consists of 16 convolutional layers, and just like AlexNet, uses three fully connected layers for classification. The main improvement over AlexNet was made substituting the first large kernel sizes in the first few layers with multiple 3x3 sequential kernel filters.
 
 \subsection{GoogLeNet}
-GoogLeNet (also known as Inception) was introduced by (cite) and was submitted to \gls{ilsvrc} 2014, winning with a TOP-5 test accuracy of 93.3\%. GoogLeNet architecture is rather complex, it introduced the inception module (shown in figure \ref{inception}) which consisted of a new approach where convolution layers were not stacked in just sequential order but instead had some of them compute in parallel, which substantially reduced computational cost.
+GoogLeNet (also known as Inception) was introduced by (cite) and was submitted to \gls{ilsvrc} 2014, winning with a TOP-5 test accuracy of 93.3\%. GoogLeNet architecture is rather complex, it introduced the inception module (shown in Figure \ref{inception}) which consisted of a new approach where convolution layers were not stacked in just sequential order but instead had some of them compute in parallel, which substantially reduced computational cost. The outputs of the different layers where then concatenated and moved towards the next module.
 
 \begin{figure}
 	\includegraphics[scale=0.3]{archivos/inception_module.png}
@@ -107,8 +109,17 @@ GoogLeNet (also known as Inception) was introduced by (cite) and was submitted t
 	\label{inception}
 \end{figure}
 
+Ever since their first version Inception v1, they have been constantly releasing new iterations of the network with constant performance improvements, up to their last Inception v4 release.
+
 \subsection{ResNet}
-ResNet was first introduced by Microsoft research and it got very popular after achieving 96.4\% in \gls{ilsvrc} 2016. This \gls{cnn} is extremely deep with 152 layers and it introduced a new concept called residual blocks (figure), this new module allowed the network inputs to skip layers and copy them to deeper layers, and so the compute output is a combination of X and F(X) as seen in (figure). This allows for deeper but also less computationally demanding networks.
+ResNet \cite{DBLP:journals/corr/HeZRS15} was first introduced by Microsoft research and it got very popular after achieving 96.4\% in \gls{ilsvrc} 2016. This \gls{cnn} is extremely deep with 152 layers and it introduced a new concept called residual blocks. Since AlexNet was released, \gls{cnn} have become increasingly deeper, this makes the network more prone to the vanishing gradient problem (the backpropagated gradients gets infinitely small and the network performance falls off). The new residual module allowed the network inputs to skip layers and copy the values onto deeper layers, in a way that the compute output is a combination of X and F(X) as depicted in Figure \ref{fig:residual}. This allows for deeper but also less computationally demanding networks.
+
+\begin{figure}
+	\includegraphics[width=0.5\textwidth]{archivos/residual.png}
+	\centering
+	\caption{Residual block extracted from \cite{DBLP:journals/corr/HeZRS15}}
+	\label{fig:residual}
+\end{figure}
 
 \subsection{ReNet}
 Multi Dimensional Recurrent Neural Network (MDRNN) are a variation of regular RNN that allow them to work with $d$ spatio-temporal dimensions of the data. The architecture proposed by (cite) used regular RNN instead of MDRNN, where every convolution + pooling layer is replaced by four RNN's that sweep the image across in four directions. 
@@ -164,3 +175,6 @@ Cityscapes is a urban dataset mainly used for instance and semantic segmentation
 
 \subsection{KITTI}
 The KITTI dataset \cite{Geiger2013IJRR} was recorded from a vehicle on a urban environment. It includes camera RGB images, laser scans, and precise GPS measurements. Despite being very popular for autonomous driving, it does not contain ground-truth annotations for semantic segmentation. To work around this, some researchers manually annotated parts of the dataset to fit their necessities. 
+
+\subsection{COCO}
+COCO is yet another image recognition and segmentation dataset by \cite{DBLP:journals/corr/LinMBHPRDZ14} which mainly focuses on everyday scenes and common objects. The dataset contains 91 different classes and a total of 328.000 images and the labeling methods contain both bounding boxes as well as semantic segmentation.
