@@ -7,8 +7,10 @@
 
 \chapter{Desarrollo}
 \label{desarrollo}
+This chapter develops the main work of this thesis. Section \ref{sec:expanding} will describe the process of automating the UnrealROX Actor. Section \ref{sec:tracker} will go through the process of recording sequences. Section \ref{sec:segnet} will describe a  SegNet implementation.  
 
 \section{Expanding the UnrealROX Framework}
+\label{sec:expanding}
 As we previously mentioned in section \ref{introduction} one of the main goals on this work is to expand the UnrealROX framework in order to automatize the generation of synthetic data without the need of a VR Headset and user input. In this section we will further detail the framework itself along with the data generation process.
 
 UnrealROX can automatically generate and annotate data from a recorded sequence, but manually recording can be tedious and time consuming. In this work we have built the basic framework for the programmer to include its own actions and execute them in a sequential way, much like other frameworks such as VirtualHome \cite{virtualhome2018}. 
@@ -109,6 +111,7 @@ With the event graph and the BlendSpaces created all that is left to do is creat
 The logic for the transitions between states are very simple, we will simply check if the speed surpasses a certain threshold, for instance, if the $Speed Anim$ is greater than 0.1, we will transition from the $Idle$ state to the $WalkForward$, in the same manner, when the speed value falls under negative $0.1$, we will transition towards the $WalkBackwards$ state.
 
 \section{Recording sequences with UnrealROX}
+\label{sec:tracker}
 In the previous section, we developed the process of automatization of the framework in order to record sequences without the need of manually doing the actions with a VR Headset. In this section we will go through the ROXTracker class and how to use it in order to record sequences (subsection \ref{sec:recording}) as well as how to play them and generate the data (subsection \ref{sec:playback}).
 
 The ROXTracker is an empty actor that has knowledge of the whole scene. In order to use it, we just need to search for it in the contextual menu (as shown in Figure \ref{fig:tracker_object}) and drag it to our scene. While in record mode, the ROXTracker will be able to store all of the information needed in order to rebuild the sequence offline as a TXT or JSON file, this will allow then to run the sequence in playback mode and generate frame by frame, ground truth annotated images such as the segmentation masks, depth and normal maps, as well as the RGB images.
@@ -229,8 +232,8 @@ Once the desired configuration is set and the Record Mode is disabled , we can h
 	\label{fig:playback_output}
 \end{figure*}
 
-\section{Implementing a ResNet using PyTorch}
-
+\section{Implementing a SegNet using PyTorch}
+\label{sec:segnet}
 
 
 

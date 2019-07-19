@@ -7,7 +7,7 @@
 
 \chapter{State of Art}
 \label{marcoteorico}
-As we previously stated, semantic segmentation is a extremely important task in the field of computer vision due to its enormous value towards complete scene understanding. This chapter is organized as follows: Section \ref{sec:intro} will give a brief introduction to the Semantic segmentation problem. In section \ref{sec:sim2real} we will delineate the importance of the Sim To Real field, as well as review some of the latest works on the matter. In Section \ref{sec:architectures} we cover several of the most important and recent deep network architectures. Finally in Section \ref{sec:datasets} we take a look at some of the most important data-sets and frameworks that tackle the semantic segmentation problem. 
+\textit{As we previously stated, semantic segmentation is a extremely important task in the field of computer vision due to its enormous value towards complete scene understanding. This chapter is organized as follows: Section \ref{sec:intro} will give a brief introduction to the Semantic segmentation problem. In section \ref{sec:sim2real} we will delineate the importance of the Sim To Real field, as well as review some of the latest works on the matter. In Section \ref{sec:architectures} we cover several of the most important and recent deep network architectures. Finally in Section \ref{sec:datasets} we take a look at some of the most important data-sets and frameworks that tackle the semantic segmentation problem. }
 
 \section{Introduction}
 \label{sec:intro}
@@ -39,14 +39,49 @@ Semantic segmentation is not so different from classic object recognition, in fa
 \label{sec:sim2real}
 In the last decade, data driven algorithms have vastly surpassed traditional techniques for computer vision problems, these algorithms, although can be tuned and improved in many different ways, still require vast amounts of quality, precisely annotated data in order to yield good results. In the real world environment, there are quite a few limitations to the quantity and quality of the data that can be produced. For instance, we could be limited to the number of cameras and annotators, moving physical objects to setup scenes could also be difficult and time consuming, and dangerous situations could be risky to set up properly i.e trying to get an autonomous car to learn to avoid pedestrians when there is no time to brake.
     
-Sim2Real is a specific section of the data science field that mainly focuses on the automatic generation and ground-truth annotation of synthetic data by simulating the real world in a virtual environment. Although a virtual environment will allow us to workaround the previously mentioned restrictions, there's still a reality gap that must be covered in order for the synthetic data to be transferred to real life situations. Most synthetic data scenarios will present discrepancies between them and the real-world, to overcome this and properly transfer the knowledge to real problems there are two known approaches that have been proven to be effective. The first one and probably the most obvious is to generate extremely realistic environments, to achieve this multiple techniques can be applied, such as rendering very high and photo-realistic textures, models and lightning or simulating the noise of real cameras by applying filters and post-process effects. The other method, domain randomization \cite{DBLP:journals/corr/TobinFRSZA17} which is based on showing the model a huge amount of different synthetic data, with this method even if the data is not represented with extreme fidelity, the variability of the multiple range of samples will make up for it and the model will learn.
+Sim2Real is a specific section of the data science field that mainly focuses on the automatic generation and ground-truth annotation of synthetic data by simulating the real world in a virtual environment. Although a virtual environment will allow us to workaround the previously mentioned restrictions, there's still a reality gap that must be covered in order for the synthetic data to be transferred to real life situations. Most synthetic data scenarios will present discrepancies between them and the real world, to overcome this and properly transfer the knowledge to real problems there are two known approaches that have been proven to be effective: 
 
-In this section we will review some of the latest works on the field.
+\begin{itemize}
+	\item \textbf{Photorealism:} This is the most intuitive approach and the main idea behind it is to simply generate extremely realistic environments as close to reality as possible, to achieve this multiple techniques can be applied and the current state of the art in this field has grown substantially in the last decade. Such techniques include rendering very high and photo-realistic textures, models and lightning or simulating the noise of real cameras by applying filters and post-process effects. 
+	
+	One of the most recent and promising innovation is real time Ray Tracing, which is a technique that substitutes the traditional rasterization step of the classic rendering pipeline, Figure \ref{fig:pipeline} illustrates both pipelines. Instead of discretizing the scene and assigning the pixel values, Ray Tracing simulates the behavior of the lightning by casting (tracing) the path of light as pixels, simulating effects such as reflection, refraction and scattering. This allows for higher precision in the pixel values since it takes into account all of the materials of the scene where the light bounced.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{archivos/pipeline}
+		\caption[Traditional rasterization pipeline in contrast to the Ray Tracing pipeline.]{Traditional rasterization pipeline in contrast to the Ray Tracing pipeline. Extracted from NVIDIA devblog\footnotemark.}
+		\label{fig:pipeline}
+	\end{figure}
+	\footnotetext{\url{https://devblogs.nvidia.com/vulkan-raytracing}}
+	
+	Normally, Ray-Tracing techniques are performed offline since they are quite heavy in terms of computation times. However, the recent RTX NVIDIA Graphic cards \footnote{\url{https://www.nvidia.com/es-es/geforce/20-series/}} feature a new type of processing unit, the RT cores, which specialize in Ray-Tracing computing and are able to accelerate such process, allowing for real time Ray-Tracing. Although this technique is still relatively recent, it is very promising and worth keeping an eye on it.
+
+	\item \textbf{Domain randomization:} This is the main alternative to photorealism when trying to cover the reality gap between the real world and the synthetic environments. This technique is based on showing the model a large amount of randomized variations of certain synthetic object or environment, this is done by randomizing certain inputs like the materials, lightning, animations or meshes. With this method even if the data is not represented with extreme fidelity, the variability of the multiple range of slightly different samples will make up for it, with enough randomization, the real world will appear as just another variation which will allow the model to generalize. Figure \ref{fig:domainrandomization} shows an example of randomized training inputs.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.5\linewidth]{archivos/domain_randomization}
+		\caption{Low-fidelity images with random variations in camera angle, lightning and positions are used to train an object detector. Testing is done in the real world. Image from \cite{DBLP:journals/corr/TobinFRSZA17}.}
+		\label{fig:domainrandomization}
+	\end{figure}
+
+	Another interesting approach to reduce the reality gap was researched in a 2018 paper by \cite{DBLP:journals/corr/abs-1812-05040}. In this work they present \textbf{Domain Adaptation}, the main takeaway behind this idea is to transfer the real-world style of images into the synthetic ones. This is done by a \gls{gan}, the image transform network generates an image taking the synthetic RGB image, the segmentation masks of said image, as well as the depth map. The discriminator will have to differentiate between the real image and the one generated by the network. 
+	
+	Also a second adaptation pass is done at the output level. The Task Network is the responsible for predicting the outputs of both real and synthetic images. Then it goes through another discriminator which has to discern if the outputs are predicted from a real or the synthetic adapted image. Figure \ref{fig:gan} shows their proposed architecture.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{archivos/gan}
+		\caption{Overview of the Input-Output adaptation network form \cite{DBLP:journals/corr/abs-1812-05040}}
+		\label{fig:gan}
+	\end{figure}
+ 
+\end{itemize}
 
 \subsection{VirtualHome}
 VirtualHome is a three dimensional environment built in the Unity game engine. The main goal is to model complex tasks in a household environment as sequences of more atomic and simple instructions.
  
-In order to perform this task a big database describing activities composed by multiple atomic steps was necessary, in the human natural language there is a lot of information that is common knowledge and is usually omitted, however, for a robot or agent this information has to be provided in order to fully understand. For this purpose an interface to formalize this tasks was built on top of the Scratch \footnote{\url{https://scratch.mit.edu/}} MIT project. Then all of this atomic actions and interactions were implemented using the Unity3D game engine.
+In order to perform this task a big database describing activities composed by multiple atomic steps was necessary, in the human natural language there is a lot of information that is common knowledge and is usually omitted, however, for a robot or agent this information has to be provided in order to fully understand a task. For this purpose an interface to formalize this tasks was built on top of the Scratch \footnote{\url{https://scratch.mit.edu/}} MIT project. Then all of this atomic actions and interactions were implemented using the Unity3D game engine.
 
 For the data collection, they had workers describe in natural language all of these tasks and then built them using the Scratch interface. Every task is composed by a sequence of steps where every step is a Scratch block, and every block defines a syntactic frame and a list of arguments for the different interactions that they may have.
 
@@ -81,11 +116,10 @@ UnrealROX \cite{DBLP:journals/corr/abs-1810-06936} is a photo-realistic 3D virtu
 
 \section{Common Architectures}
 \label{sec:architectures}
-As we previously stated, semantic segmentation is a natural step towards the more fine-grained image recognition problem, since the information that we are trying to infer is higher level, we will also require more complex architectures. Although the models we will be reviewing in this section work properly for image recognition and detection, some modifications will have to be made in order to adapt them for segmentation problems. However, they have made such significant contributions to the field that they are still being used as the basic building blocks segmentation architectures.
+As we previously stated, semantic segmentation is a natural step towards the more fine-grained image recognition problem, since the information that we are trying to infer is higher level, we will also require more complex architectures. Although the models we will be reviewing in this section work properly for image recognition and detection, some modifications will have to be made in order to adapt them for segmentation problems. However, they have made such significant contributions to the field that they are still being used as the basic building blocks of segmentation architectures.
 
 \subsection{AlexNet}
 AlexNet was the first deep network architecture that successfully surpassed traditional machine learning approaches, winning the \gls{ilsvrc} 2012 with a 84.6\% TOP-5 test accuracy, easily surpassing the its competitors by a huge margin. The architecture itself was pretty straight forward. It consisted of five convolution + pooling layers followed by three fully connected ones as seen in figure \ref{alexnet}.
-
 
 \begin{figure}[h]
 	\includegraphics[scale=0.3]{archivos/alexnet.png}
@@ -112,7 +146,7 @@ GoogLeNet (also known as Inception) was introduced by (cite) and was submitted t
 Ever since their first version Inception v1, they have been constantly releasing new iterations of the network with constant performance improvements, up to their last Inception v4 release.
 
 \subsection{ResNet}
-ResNet \cite{DBLP:journals/corr/HeZRS15} was first introduced by Microsoft research and it got very popular after achieving 96.4\% in \gls{ilsvrc} 2016. This \gls{cnn} is extremely deep with 152 layers and it introduced a new concept called residual blocks. Since AlexNet was released, \gls{cnn} have become increasingly deeper, this makes the network more prone to the vanishing gradient problem (the backpropagated gradients gets infinitely small and the network performance falls off). The new residual module allowed the network inputs to skip layers and copy the values onto deeper layers, in a way that the compute output is a combination of X and F(X) as depicted in Figure \ref{fig:residual}. This allows for deeper but also less computationally demanding networks.
+ResNet \cite{DBLP:journals/corr/HeZRS15} was first introduced by Microsoft research and it got very popular after achieving 96.4\% in \gls{ilsvrc} 2016. This \gls{cnn} is extremely deep with 152 layers (although shallower variations do exist) and it introduced a new concept called residual blocks. Since AlexNet was released, \gls{cnn} have become increasingly deeper, this makes the network more prone to the vanishing gradient problem (the backpropagated gradients gets infinitely small and the network performance falls off). The new residual module allowed the network inputs to skip layers and copy the values onto deeper layers, in a way that the compute output is a combination of $X$ and $F(X)$ as depicted in Figure \ref{fig:residual}. This helps reducing the vanishing gradient problem in deep networks and allows each layer with a residual input to learn something new since the inputs are both the encoded values from the previous layer as well as the unchanged inputs.
 
 \begin{figure}
 	\includegraphics[width=0.5\textwidth]{archivos/residual.png}
@@ -125,14 +159,14 @@ ResNet \cite{DBLP:journals/corr/HeZRS15} was first introduced by Microsoft resea
 Multi Dimensional Recurrent Neural Network (MDRNN) are a variation of regular RNN that allow them to work with $d$ spatio-temporal dimensions of the data. The architecture proposed by (cite) used regular RNN instead of MDRNN, where every convolution + pooling layer is replaced by four RNN's that sweep the image across in four directions. 
 
 \subsection{Semantic Segmentation Methods}
-All the image recognition problem solutions based on convolutional architectures, whether it is recognition, detection, localization or segmentation, they all share a big common module, which is the convolution layers that will extract the features of any image, after that we can adapt our network for our specific problem.
+All the image recognition problem solutions based on convolutional architectures, whether it is recognition, detection, localization or segmentation, they all share a big common module, which is the convolution layers that will extract the features of any image, then the feature maps can be applied to any classification network structure depending on the desired output format.
 
-Today, almost every semantic segmentation architecture uses the \gls{fcn} by \cite{DBLP:journals/corr/LongSD14}. The idea behind this is to replace the fully connected layers of previously well known architectures for image classification such as ResNet or GoogleNet with \gls{fcn} in order to obtain a spatial map instead classification outputs, this way we can obtain pixel-wise classification while still using the inferred knowledge and power of the \gls{cnn}'s. Convolutional layers (convolution + pooling) downsample the input image in order to learn features, this downsampling does not matter when applied to classification problems, however, when doing pixel-wise classification, we require the output image to have the same size as the input. To overcome this problem, spatial maps are then upsampled by using deconvolution layers as shown in \cite{deconvolution}.
+Today, almost every semantic segmentation architecture uses the \gls{fcn} by \cite{DBLP:journals/corr/LongSD14}. The idea behind this is to replace the classic fully connected layers of \gls{cnn}s with \gls{fcn}s in order to obtain a spatial map instead of classification outputs, this way we can obtain pixel-wise classification while still using the inferred knowledge and power of the \gls{cnn}s to extract the features. However, a new problem arises when using \gls{cnn}s for semantic segmentation since  convolutional layers (convolution + pooling) downsample the input image in order to learn features, this downsampling does not matter when applied to classification problems, however, when doing pixel-wise classification, we require the output image to have the same size as the input. To overcome this problem, spatial maps are then upsampled by using deconvolution layers as shown in \cite{deconvolution}.
 
 \subsubsection{Decoder Variant}
 The decoder variant is another method to adapt networks that were initially made for classification. In this variant, the network after removing the fully connected layers is normally called encoder and it outputs a low-resolution feature map. The second part of this variant is called decoder and the main idea behind it is to up-sample those feature maps to obtain a full resolution pixel-wise classification.
 
-One of the most known examples of this encoder-decoder architecture is SegNet \cite{DBLP:journals/corr/BadrinarayananK15}, the encoder part is fundamentally the same as a \gls{vgg}-16 without the fully connected layers at the very end, while the decoder part consists of a combination of convolution and upsampling layers that correspond to the max-pooling ones in the encoder, the whole architecture can be seen in figure \ref{fig:segnet}. SegNet is a very simple architecture wich yields very good results and is relatively fast, which makes it a good starting point of any semantic segmentation problem.
+One of the most known examples of this encoder-decoder architecture is SegNet \cite{DBLP:journals/corr/BadrinarayananK15}, the encoder part is fundamentally the same as a \gls{vgg}-16 without the fully connected layers at the very end, while the decoder part consists of a combination of convolution and upsampling layers that correspond to the max-pooling ones in the encoder, the whole architecture can be seen in figure \ref{fig:segnet}. SegNet is a very simple architecture which yields very good results and is relatively fast, which makes it a good starting point of any semantic segmentation problem.
 
 \begin{figure}[h]
 	\includegraphics[scale=0.5]{archivos/segnet.png}
@@ -144,14 +178,28 @@ One of the most known examples of this encoder-decoder architecture is SegNet \c
 \subsubsection{Dilated Convolutions}
 As we previously mentioned, \gls{cnn}'s generate significantly reduced spacial feature maps, to overcome this spatial reduction, dilated convolutions (also known as \textit{atrous} convolutions) can be used in order to aggregate multi-scale contextual information without down-scaling.
 
-The dilation rate can be modified by the upsampling factor. That way, a 1-dilated would be a regular convolution where every element has a receptive field of 1x1, in a 2-dilated every element has a 3x3 receptive field, in a 3-dilated every element has a 7x7 \todo{dilated conv fig}. This way the receptive field grows in a exponential way, while the parameters have a linear growth.
+The dilation rate $l$ will control the up-sampling factor of the filters. That way, a 1-dilated convolution would be a regular convolution where every element has a receptive field of 1x1, in a 2-dilated every element has a 3x3 receptive field, in a 3-dilated every element has a 7x7, this is depicted in Figure \ref{fig:dilatedconv}. This way the receptive field grows in a exponential way, while the parameters have a linear growth.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{archivos/dilated_conv}
+	\caption{(a) 1x1 receptive fields, 1-dilated, (b) 3x3 receptive fields, 2-dilated, (c) 7x7 receptive fields, 3-dilated. Figure extracted from \cite{yu2015multiscale}.}
+	\label{fig:dilatedconv}
+\end{figure}
 
 Some of the most important works that make use of this technique are the aforementioned multi-context aggregation by \cite{yu2015multiscale} and DeepLab by \cite{DBLP:journals/corr/ChenPK0Y16}.
 
 \subsubsection{Conditional Random Fields}
 Deep \gls{cnn}s applied to semantic segmentation excel at classification tasks, however they still lack precision when it comes to spacial information and struggle to properly delineate the boundaries of objects. To overcome this, a last post-processing step in order to refine the output can be applied, for instance, \gls{crf}. \gls{crf}s make use of both low level pixel interaction as well as the multi-class inference pixel prediction of high level models.
 
-The DeepLab model by \cite{DBLP:journals/corr/ChenPK0Y16} makes use of \gls{crf} to refine their output, figure \todo{deeplab crf fig} shows the output of the CRF applied to the prediction output maps of their model. 
+The DeepLab model by \cite{DBLP:journals/corr/ChenPK0Y16} makes use of \gls{crf} to refine their output, an overview of the model can be seen in Figure \ref{fig:deeplab}. 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{archivos/deeplab}
+	\caption{Illustration of the DeepLab proposed architecture, using a deep \gls{cnn} for pixel-wise classification and a fully connected \gls{crf} to refine the output.}
+	\label{fig:deeplab}
+\end{figure}
 
 \section{Datasets}
 \label{sec:datasets}

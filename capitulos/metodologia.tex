@@ -7,7 +7,7 @@
 
 \chapter{Materials and Methods}
 \label{metodologia}
-In this chapter we will go through some of the software and hardware specification related to this work, making special emphasis in those we ended up using as our main resources. We will divide this chapter in 4 different parts. First, we needed a game or 3D engine framework in order to generate our synthetic data. Second, we needed a high level deep learning framework in order to implement some of the current architectures, since most of them are quite complex and building them from the ground up is a extremely complex task and out of the scope of this work. Third, we need real world datasets in order to test our synthetic data trained algorithms. And finally, we need extremely powerful GPU computing hardware in order to train and test these architectures.
+\textit{In this chapter we will go through some of the software and hardware specification related to this work, making special emphasis in those we ended up using as our main resources. We will divide this chapter in 4 different parts. First, we needed a game or 3D engine framework in order to generate our synthetic data. Second, we needed a high level deep learning framework in order to implement some of the current architectures, since most of them are quite complex and building them from the ground up is a extremely complex task and out of the scope of this work. Third, we need real world datasets in order to test our synthetic data trained algorithms. And finally, we need extremely powerful GPU computing hardware in order to train and test these architectures.}
 
 \section{Unreal Engine 4}
 \gls{ue4} is a very powerful, highly portable game engine, written in C++ and developed by Epic Games\footnote{\url{https://www.unrealengine.com/en-US/}}.
@@ -23,7 +23,7 @@ The main advantages \gls{ue4} offers over other game engines and the reason Unre
 \begin{figure}[h]
 	\includegraphics[scale=0.2]{archivos/london_apartment.png}
 	\centering
-	\caption[Snapshot of the Viennese Apartbent by UE4Arch]{Snapshot of the Viennese Apartment by UE4Arch\footnotemark}
+	\caption[Snapshot of the Viennese Apartment by UE4Arch]{Snapshot of the Viennese Apartment by UE4Arch\footnotemark}
 	\label{fig:london_apartment}
 \end{figure}
 \footnotetext{\url{https://ue4arch.com/projects/viennese-apartment/}}
@@ -40,6 +40,18 @@ However the main reason Visual Studio was chosen as the main \gls{ide} for this 
 	\label{fig:visual_studio}
 \end{figure}
 
+\section{Google Colab}
+Colaboratory\footnote{\url{https://colab.research.google.com/}} is a free Jupyter\footnote{\url{https://jupyter.org}} notebook environment that runs entirely on the cloud, requires no setup and is powered by Google. Jupyter notebook is a cell based environment that allows to create and share documents containing live code\texttt{}, equations, images and text. It is mostly used with python, however it has integration with other languages such as R, C++, Scheme or Ruby. Its integration within Google Colab makes it a very easy to use tool for prototyping and quick testing, Figure \ref{fig:colab} shows the main user interface.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\linewidth]{archivos/colab}
+	\caption{Google Colab web interface.}
+	\label{fig:colab}
+\end{figure}
+
+Since it is a free environment one may think its not to powerful hardware wise, however this is not the case, it provides more than enough to run deep architectures with ease, although it is not a tool intended for long-running background computation and the system will free resources every 12 hours.
+The full hardware specification is shown in table \ref{table:colab}.
 \section{Frameworks}
 In this section, we will go trough some of the most recent and popular \gls{dl} frameworks.
 
@@ -61,11 +73,13 @@ In a first approach, TensorFlow was going to be the main framework for this proj
 Keras is a high level framework written in Java that can use TensorFlow, CNTK or Theano as backend. It was developed to be an easy to use framework, allowing for very fast experimentation and prototyping, abstracting the user of some of the more complex low level tasks with a very user friendly interface. This also makes Keras a very good entry framework for beginners that still don't have a solid foundation on deep learning.
 
 Keras provides two different APIs for different model building approaches. The Sequential API which allows to simply stack layer after layer, allowing for a very simple and easy to use interface for models with a input to output data flow. The Functional API however allows for more complex models by understanding each layer as a node graph, allowing for different, more complex and non sequential models.
+
+At the start of this project, Keras was used in order to implement simple neural networks with educational purposes since it is a very easy and intuitive framework. We discarded it for the end project since we believe there are better alternatives that allow for more flexibility.
  
 \subsection{PyTorch}
 PyTorch is an open source, Python-based, \gls{gpu}-Ready computing package and machine learning framework, just like other frameworks, it provides Tensors, which can be moved both to the \gls{cpu} and \gls{gpu}, as well as all the algebra and math operations for them, they can also be converted from NumPy and other Tensor libraries.
 
-Another PyTorch feature that is worth mentioning is the modularity, writing new modules for a \gls{nn} is very straightforward and they can be written in both native python and other NumPy based libraries or with the torch \gls{api}.
+Another PyTorch feature that is worth mentioning is the modularity, writing new modules for a \gls{nn} is very straightforward and they can be written in both native python and other NumPy based libraries or with the torch \gls{api}. Also it has multiple pretrained networks, datasets and well documented examples.
 
 PyTorch is also in continuous development and has been steadily gaining popularity ever since its release back in 2016. In terms of performance, PyTorch is just slightly behind Tensorflow, and easily outperforms other high level frameworks such as Keras.
 
@@ -119,7 +133,7 @@ Also, it is worth mentioning  Asimov was configured for remote access using SSH 
 \end{table}
 
 \subsection{Personal Computer}
-During the developing of this work, my personal computer was used in order to run \gls{ue4} and UnrealROX, as well as generating the data used for the deep learning experimentation. Table \ref{table:pc} shows the full hardware specification.
+During the developing of this work, my personal computer was used in order to run \gls{ue4} and UnrealROX, as well as to generate the data used for the deep learning experimentation. Table \ref{table:pc} shows the full hardware specification.
 
 \begin{table}[h]
 	\centering 
@@ -143,4 +157,26 @@ During the developing of this work, my personal computer was used in order to ru
 	\end{tabular}
 	\caption{Hardware specification for my personal computer.}
 	\label{table:pc}
+\end{table}
+
+\subsection{Google Colab}
+As explained in Section \ref{}, the Google Colaboratory environment was used in the prototyping and testing process. The hardware specification where this environment runs is shown in Table \ref{table:colab}.
+
+\begin{table}[h]
+	\centering 
+	\begin{tabular}{c p{7cm}}
+		\hline
+		\multicolumn{2}{c}{Google Colab} \\ [0.5ex] 
+		\hline
+		CPU & Intel(R) Core(TM) Xeon CPU @ 2.3GHz \newline 2.3 GHz (No Turbo Boost) \newline 1 core (2 threads) \newline 45MB Cache \\
+		\hline
+		GPU & NVIDIA Tesla K80 \newline 2496 CUDA cores \newline 12 GiB of GDDR5 Video Memory \newline PCIe 3.0 \newline 300 W TDP \\
+		\hline
+		RAM & ~12.6 GiB \\
+		\hline
+		Storage (Data) & ~320 GiB \\
+		\hline	
+	\end{tabular}
+	\caption{Hardware specification for Google Colab instances.}
+	\label{table:colab}
 \end{table}
