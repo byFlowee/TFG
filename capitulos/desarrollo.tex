@@ -7,7 +7,7 @@
 
 \chapter{Desarrollo}
 \label{desarrollo}
-This chapter develops the main work of this thesis. Section \ref{sec:expanding} will describe the process of automating the UnrealROX Actor. Section \ref{sec:tracker} will go through the process of recording sequences. Section \ref{sec:segnet} will describe a  SegNet implementation.  
+This chapter develops the main work of this thesis and is organized as follows. Section \ref{sec:expanding} will describe the process of automating the UnrealROX Actor. Section \ref{sec:tracker} will go through the process of recording sequences. Finally, Section \ref{sec:segnet} will cover all the deep learning work such as the network implementation and the data pre-processing.  
 
 \section{Expanding the UnrealROX Framework}
 \label{sec:expanding}
@@ -234,6 +234,21 @@ Once the desired configuration is set and the Record Mode is disabled , we can h
 
 \section{Implementing a SegNet using PyTorch}
 \label{sec:segnet}
+As we previously mentioned, one of the main goals of this work is to study how synthetic data can help semantic segmentation algorithms. For this purpose, a SegNet has been implemented and trained with a real-world human-pose dataset, this section will cover the design and development process of such implementation.
 
+\subsection{Preprocessing the dataset}
+\label{sec:preprocess}
+In section \ref{sec:datasets} we mentioned a few of the most important datasets in the field, however, all of them are general purpose oriented, and for this work we needed a human pose dataset. Because of this, we decided to use the Unite The People \cite{} dataset. Most of the images from this dataset come from the MPII Human Pose Dataset and contains both the RGB and the Segmentation Mask image.
 
+However, some data pre-processing will be needed in order to fit the dataset to our needs.
 
+\subsubsection{Merging the segmentation masks}
+
+\subsubsection{Creating the dataset class} 
+
+\subsection{Training the network}
+\label{sec:training}
+
+\subsubsection{SegNet Model}
+
+\subsubsection{Training script}
