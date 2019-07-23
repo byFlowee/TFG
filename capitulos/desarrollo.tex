@@ -23,7 +23,7 @@ The ROXBotPawn class inherits from ROXBasePawn and will handle all the logic for
 
 Also in order to model the actions themselves, the $FROXAction$ struct was built, containing a pointer to the target, as well as the type of action $EActionType$, the structure is shown in listing \ref{code:actionStruct}.
 
-\begin{listing}[language=C++, caption=FROXAction struct, frame=single, label=code:actionStruct]
+\begin{lstlisting}[style=C++, caption=FROXAction struct, frame=single, label=code:actionStruct]
 	USTRUCT(BlueprintType)
 	struct FROXAction
 	{
@@ -37,17 +37,17 @@ Also in order to model the actions themselves, the $FROXAction$ struct was built
 		FROXAction() : target(nullptr), action(EActionType::MoveTo) {};
 		FROXAction(AActor* tg, EActionType t) : target(tg), action(t) {};
 	}
-\end{listing}
+\end{lstlisting}
 
 In order for the programmer to add actions and queue them from the \gls{ue4} editor we built the $doAction(AActor*, EActionType)$ (seen in listing \ref{code:queueAction}) and made it BlueprintCallable, this way, in a simple way, actions can be queued from the editor and the $Pawn$ will execute them in a sequential order as seen in Figure \ref{action_queue}. The target actor can be picked from the editor by making a new variable and the type of action can be selected with a drop down menu in the body of the blueprint function.
 
-\begin{listing}[language=C++, caption=doAction function which queues a new FROXAction to the system, frame=single, label=code:queueAction]
+\begin{lstlisting}[style=C++, caption=doAction function which queues a new FROXAction to the system, frame=single, label=code:queueAction]
 	UFUNCTION(BlueprintCallable)
 	void AROXBotPawn::doAction(AActor* actor, EActionType type) 
 	{	
 		actions.Add(FROXAction(actor, type));
 	}
-\end{listing}
+\end{lstlisting}
 
 \begin{figure}[h]
 	\includegraphics[scale=0.4]{archivos/action_queue.png}
@@ -62,12 +62,12 @@ Additionally, pathfinding and movement logic was implemented in order to define 
 
 With the previous options discarded, we decided to go with a custom implementation of the movement. In order to accomplish this, the NavigationMesh component of \gls{ue4} was used along with the $FindPathToActorSynchronously$ method, which returns a $UNavigationPath$ containing all the path-points from one actor to another. Once we obtain the path-points the $VInterpConstantTo$ from the FMath library and the $RInterpTo\_Constant$ from the UKismeMathLibrary are used in order to obtain the next vector transformation for both position and rotation of the $Pawn$, this movement logic can be seen in listing \ref{code:movementLogic}. These methods interpolate the current location with the next path-point location in order to achieve a smooth transition and make the movement more natural.
 
-\begin{listing}[language=C++, caption=Movement logic for the pathfinding algorithm, frame=single, label=code:movementLogic]
+\begin{lstlisting}[style=C++, caption=Movement logic for the pathfinding algorithm, frame=single, label=code:movementLogic]
 	FVector nextPos = FMath::VInterpConstantTo(this->ActorLocation(), FVector(pathPoints[i].X, pathPoints[i].Y, ActorLocation().Z), DeltaTime, vel);
 	FRotator nextRot = UKismetMathLibrary::RInterpTo_Constant(ActorRotation(), UKismetMathLibrary::FindLookAtRotation(ActorLocation(), nextPos), DeltaTime, rotateVel);
 	SetActorRotation(nextRot);
 	SetActorLocation(nextPos);
-\end{listing}
+\end{lstlisting}
 
 \subsection{Animating the ROXBotPawn}
 As we previously mentioned in section \ref{sec:sim2real}, simulating the 3D environment with extreme detail is a must in order for the algorithms to properly infer the knowledge and transfer it to the real world. In this section we will take a look into the process of creating a new animation for the ROXBotPawn using \gls{ue4} blueprints.
@@ -234,21 +234,127 @@ Once the desired configuration is set and the Record Mode is disabled , we can h
 
 \section{Implementing a SegNet using PyTorch}
 \label{sec:segnet}
-As we previously mentioned, one of the main goals of this work is to study how synthetic data can help semantic segmentation algorithms. For this purpose, a SegNet has been implemented and trained with a real-world human-pose dataset, this section will cover the design and development process of such implementation.
+As we previously mentioned, one of the main goals of this work is to study how synthetic data can help semantic segmentation algorithms. For this purpose, a SegNet has been implemented and trained with a real-world human-pose dataset, this section will cover all the data processing, as well as the design and development process of such network.
 
 \subsection{Preprocessing the dataset}
 \label{sec:preprocess}
-In section \ref{sec:datasets} we mentioned a few of the most important datasets in the field, however, all of them are general purpose oriented, and for this work we needed a human pose dataset. Because of this, we decided to use the Unite The People \cite{} dataset. Most of the images from this dataset come from the MPII Human Pose Dataset and contains both the RGB and the Segmentation Mask image.
+In section \ref{sec:datasets} we mentioned a few of the most important datasets in the field, however, all of them are general purpose oriented, and for this work we needed a human pose dataset. Because of this, we decided to use the \gls{utp} \cite{} dataset. Most of the images from this dataset come from the MPII Human Pose Dataset and contains both the RGB and the Segmentation Mask image.
 
-However, some data pre-processing will be needed in order to fit the dataset to our needs.
+However, some data pre-processing will be needed in order to fit the data to our needs. 
 
 \subsubsection{Merging the segmentation masks}
+The \gls{utp} dataset is divided by segmentation instances. This means that a full image with different persons is divided in different images, each with its unique segmentation mask. For our purpose, we wanted the full image without the instance information. The dataset provides a CSV file which contains the image ID for every segmentation instance in sequential order, this means that we can get all the instances that share the same image ID by iterating through the CSV file, Listing \ref{code:numInstances} shows how we obtain the amount of instances for a single image ID.
 
-\subsubsection{Creating the dataset class} 
+\begin{lstlisting}[style=Python-color, caption=Obtaining the number of instances for a single image, frame=single, label=code:numInstances]
+	csv = pd.read_csv(csv_path)
+	
+	while x < len(csv):
+		instances = 0
+		
+		for id in range(x, len(csv)):
+			if csv['mpii_id'][id] == csv['mpii_id'][id+1]:
+				instances += 1
+			else:
+				break
+\end{lstlisting}
+
+With the amount of instances and having our iterator $x$ pointing to the first image we can now obtain all the following images and merge them as shown in Listing \ref{code:mergeInstances}. To do this, we use the $Paste$ method from the $Pillow$ library, this method takes two inputs, the image to be pasted and the mask which contains the pixels that are to be copied into the our first image. In our case the mask already fits our purpose since it is the mask that we want to copy.
+
+\begin{lstlisting}[style=Python-color, caption=Merging the instance masks into a single image, frame=single, label=code:mergeInstances]
+	first_image = Image.open(img_path + str(x))
+	
+	for n in range(1, instances + 1):
+		next_image = Image.open(img_path + str(x + n))
+		first_image.paste(next_image, (0,0), next_image.convert('L'))
+		
+	new_id += 1
+	x += instances + 1
+\end{lstlisting}
+
+\subsubsection{Creating the dataset class}
+Before we can train our network, we need to design a data loader class that will fetch our dataset and transform the data to the proper format. For this purpose we used the PyTorch Dataset class, this way we will be able to create our data loaders and all the data and batch processing will be handled by the framework. Listing \ref{code:UTPDataset} shows the main structure of the UTPDataset class.
+
+\begin{lstlisting}[style=Python-color, caption=UTPDataset definition, frame=single, label=code:UTPDataset]
+	class UTPDataset(Dataset):
+		def __init__(self, img_dir, transform=None):
+			self.transform = transform
+			self.image_root_dir = img_dir
+			self.img_extension = '_full.png'
+			self.mask_extension = '_segmentation_full.png'
+			
+		def __getitem__(self, index):
+			image_id = str(index).zfill(5)
+			image_path = os.path.join(self.image_root_dir, image_id, self.img_extension)
+			mask_path = os.path.join(self.image_root_dir, image_id, self.mask_extension)
+			
+			image = self.load_image(path=image_path)
+			mask = self.load_mask(path=mask_path)
+			
+			data =  {
+						'image': torch.FloatTensor(image),
+						'mask' : torch.LongTensor(mask)
+					}
+					
+			return data
+			
+\end{lstlisting}
+
+The \textbf{$\_\_getitem\_\_$} method will return the rgb-mask pair when given an index. In order to load the image, we compute the filename using the $zfill$ method, this will add leading zeros to the index so it fits the image name. We then call the $load\_image$ and $load\_mask$ methods shown in Listing \ref{code:UTPload} which will load and preprocess the data. Finally we insert it into a small dictionary and return it.
+
+\begin{lstlisting}[style=Python-color, caption=UTPDataset rgb and mask load and pre-processing, frame=single, label=code:UTPload]
+	PALETTE = {
+		(0,		0,		0)		:	0,		#Human
+		(255,	255,	255)	:	1,		#Background
+	}
+
+	def load_image(self, path=None):
+		raw_image = Image.open(path)
+		raw_image = np.transpose(raw_image.resize((224,224)), (2,1,0))
+		imx_t = np.array(raw_image, dtype=np.float32)/255.0
+		
+		return imx_t
+
+	def load_mask(self, path=None):
+		raw_image = Image.open(path)
+		raw_image = raw_image.resize((224,224))
+		imx_t = np.array(raw_image)
+		label_seg = np.zeros((2,224,224), dtype=np.int)
+		
+		for k in PALETTE:
+			label_seg[PALETTE[k]][(imx_t==k).all(axis=2)] = 1
+		
+		return label_seg
+		
+\end{lstlisting}
+
+It is important to remark that the input data format for the masks is $(N \times C \times H \times W)$ where $N$ is the batch size, $C$ the number of classes and $H \times W$ the height and width of the image. The segmentation masks are one-hot encoded, which means each class has a $(1 \times H \times W)$ image where the pixels belonging to the $C$ class are stored as 1 and the rest as 0. The method $load\_mask$ in Listing \ref{code:UTPload} performs such encoding, we iterate through all the classes stored on the $PALLETE$ dictionary, where the RGB values for each class are stored. For every class and starting with a zero-filled matrix, we write only on the pixel coordinates of the mask that corresponds to the RGB value of the current class. This encoding is depicted in Figure \ref{fig:onehot}.
+
+\begin{figure}[h]
+	\centering
+	
+	\begin{subfigure}[b]{0.7\textwidth}
+		\includegraphics[width=1\linewidth]{archivos/segmentation_encoding.png}
+		\caption{Regular segmentation mask codification.}
+	\end{subfigure}
+	
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=1\linewidth]{archivos/segmentation_encoding2.png}
+		\caption{One-hot encoded masks.}
+	\end{subfigure}
+	
+	\caption[One-hot encoding format from a regular segmentation mask.]{One-hot encoding format from a regular segmentation mask. Extracted from Jeremy Jordan semantic segmentation post\footnotemark.}
+	\label{fig:onehot}
+\end{figure}
+\footnotetext{\url{https://www.jeremyjordan.me/semantic-segmentation/}}
 
 \subsection{Training the network}
 \label{sec:training}
+In this Subsection we will go through the network implementation (Subsection \ref{sec:model}) and the training script (Subsection \ref{sec:train_script}).
 
 \subsubsection{SegNet Model}
+\label{sec:model}
+
 
 \subsubsection{Training script}
+\label{sec:train_script}
+

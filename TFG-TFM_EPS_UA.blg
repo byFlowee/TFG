@@ -14,46 +14,47 @@ Reallocated singl_function (elt_size=8) to 100 items from 50.
 Database file #1: bibliografia/bibliografia.bib
 A bad cross reference---entry "DBLP:journals/corr/SimonyanZ14a"
 refers to entry "DBLP:conf/iclr/2015", which doesn't exist
+Warning--I didn't find a database entry for ""
 apacite.bst [2013/07/21 v6.03 APA bibliography style]
-You've used 12 entries,
+You've used 16 entries,
             6951 wiz_defined-function locations,
-            1347 strings with 13777 characters,
-and the built_in function-call counts, 26724 in all, are:
-= -- 3221
-> -- 271
-< -- 1288
-+ -- 1361
-- -- 24
-* -- 1756
-:= -- 4828
-add.period$ -- 53
-call.type$ -- 12
-change.case$ -- 211
+            1372 strings with 15045 characters,
+and the built_in function-call counts, 36798 in all, are:
+= -- 4397
+> -- 371
+< -- 1806
++ -- 1960
+- -- 32
+* -- 2446
+:= -- 6677
+add.period$ -- 68
+call.type$ -- 16
+change.case$ -- 279
 chr.to.int$ -- 0
-cite$ -- 24
-duplicate$ -- 787
-empty$ -- 1031
-format.name$ -- 491
-if$ -- 4977
+cite$ -- 32
+duplicate$ -- 1146
+empty$ -- 1403
+format.name$ -- 697
+if$ -- 6788
 int.to.chr$ -- 0
-int.to.str$ -- 36
+int.to.str$ -- 48
 missing$ -- 0
-newline$ -- 341
-num.names$ -- 96
-pop$ -- 507
+newline$ -- 461
+num.names$ -- 128
+pop$ -- 642
 preamble$ -- 1
-purify$ -- 52
+purify$ -- 68
 quote$ -- 0
-skip$ -- 1640
+skip$ -- 2218
 stack$ -- 0
-substring$ -- 1474
-swap$ -- 430
-text.length$ -- 37
+substring$ -- 2127
+swap$ -- 610
+text.length$ -- 45
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 1152
+type$ -- 1472
 warning$ -- 0
-while$ -- 169
+while$ -- 243
 width$ -- 0
-write$ -- 453
+write$ -- 616
 (There was 1 error message)

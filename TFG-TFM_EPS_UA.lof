@@ -1,12 +1,39 @@
 \select@language {english}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {\relax 1.1}{\ignorespaces Snapshots of the Robotrix dataset extracted from \cite {DBLP:journals/corr/abs-1901-06514}.\relax }}{2}{figure.caption.9}% 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 2.1}{\ignorespaces AlexNet architecture reproduced from \cite {AlexNet}\relax }}{5}{figure.caption.10}% 
-\contentsline {figure}{\numberline {\relax 2.2}{\ignorespaces Inception module extracted from \cite {DBLP:journals/corr/SzegedyLJSRAEVR14}\relax }}{6}{figure.caption.11}% 
+\contentsline {figure}{\numberline {\relax 2.1}{\ignorespaces \textbf {(a)} Object detection \textbf {(b)} Object localization \textbf {(c)} Multiple object localization \textbf {(a)} Semantic segmentation \textbf {(b)} Instance segmentation.\relax }}{4}{figure.caption.10}% 
+\contentsline {figure}{\numberline {\relax 2.2}{\ignorespaces Traditional rasterization pipeline in contrast to the Ray Tracing pipeline.}}{5}{figure.caption.11}% 
+\contentsline {figure}{\numberline {\relax 2.3}{\ignorespaces Low-fidelity images with random variations in camera angle, lightning and positions are used to train an object detector. Testing is done in the real world. Image from \cite {DBLP:journals/corr/TobinFRSZA17}.\relax }}{6}{figure.caption.12}% 
+\contentsline {figure}{\numberline {\relax 2.4}{\ignorespaces Overview of the Input-Output adaptation network form \cite {DBLP:journals/corr/abs-1812-05040}\relax }}{6}{figure.caption.13}% 
+\contentsline {figure}{\numberline {\relax 2.5}{\ignorespaces List of actions represented with the scratch interface, where the user can manually add, modify and change the arguments of every action.\relax }}{7}{figure.caption.14}% 
+\contentsline {figure}{\numberline {\relax 2.6}{\ignorespaces AlexNet architecture reproduced from \cite {AlexNet}\relax }}{8}{figure.caption.15}% 
+\contentsline {figure}{\numberline {\relax 2.7}{\ignorespaces Inception module extracted from \cite {DBLP:journals/corr/SzegedyLJSRAEVR14}\relax }}{9}{figure.caption.16}% 
+\contentsline {figure}{\numberline {\relax 2.8}{\ignorespaces Residual block extracted from \cite {DBLP:journals/corr/HeZRS15}\relax }}{10}{figure.caption.17}% 
+\contentsline {figure}{\numberline {\relax 2.9}{\ignorespaces Segnet architecture graph extracted from \cite {DBLP:journals/corr/BadrinarayananK15}\relax }}{11}{figure.caption.18}% 
+\contentsline {figure}{\numberline {\relax 2.10}{\ignorespaces (a) 1x1 receptive fields, 1-dilated, (b) 3x3 receptive fields, 2-dilated, (c) 7x7 receptive fields, 3-dilated. Figure extracted from \cite {yu2015multiscale}.\relax }}{11}{figure.caption.19}% 
+\contentsline {figure}{\numberline {\relax 2.11}{\ignorespaces Illustration of the DeepLab proposed architecture, using a deep \gls {cnn} for pixel-wise classification and a fully connected \gls {crf} to refine the output.\relax }}{12}{figure.caption.20}% 
+\contentsline {figure}{\numberline {\relax 2.12}{\ignorespaces PASCAL Part examples of ground truth annotated parts for different classes.\relax }}{13}{figure.caption.21}% 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {\relax 4.1}{\ignorespaces Snapshot of the Viennese Apartment by UE4Arch}}{18}{figure.caption.22}% 
+\contentsline {figure}{\numberline {\relax 4.2}{\ignorespaces Visual Studio IDE.\relax }}{18}{figure.caption.23}% 
+\contentsline {figure}{\numberline {\relax 4.3}{\ignorespaces Google Colab web interface.\relax }}{19}{figure.caption.24}% 
+\contentsline {figure}{\numberline {\relax 4.4}{\ignorespaces Tensorflow graph example depicting a simple two-layer convolution + pooling with a fully connected layer for classification at the end.\relax }}{20}{figure.caption.25}% 
+\contentsline {figure}{\numberline {\relax 4.5}{\ignorespaces Worldwide PyTorch and Tensorflow popularity comparison in Google Search.\relax }}{21}{figure.caption.26}% 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 5.1}{\ignorespaces Example of queuing 3 "MoveTo" actions from the editor\relax }}{13}{figure.caption.17}% 
+\contentsline {figure}{\numberline {\relax 5.1}{\ignorespaces Example of queuing 3 "MoveTo" actions from the editor\relax }}{26}{figure.caption.30}% 
+\contentsline {figure}{\numberline {\relax 5.2}{\ignorespaces Blend Space asset which samples the transition from idle walking state animation, 0 speed would translate into a complete idle, while 90 would be walking forward.\relax }}{28}{figure.caption.31}% 
+\contentsline {figure}{\numberline {\relax 5.3}{\ignorespaces Animation event graph which will obtain the Bot data, the SpeedCalc module is expanded in Figure \ref {fig:speed_calc}.\relax }}{28}{figure.caption.32}% 
+\contentsline {figure}{\numberline {\relax 5.4}{\ignorespaces Blueprint sub-module which computes the instantaneous speed of the Bot.\relax }}{29}{figure.caption.33}% 
+\contentsline {figure}{\numberline {\relax 5.5}{\ignorespaces Animation state machine with idle, walk forward and walk backwards states and the transitions logic.\relax }}{29}{figure.caption.34}% 
+\contentsline {figure}{\numberline {\relax 5.6}{\ignorespaces ROXTracker Object in the \gls {ue4} contextual menu.\relax }}{30}{figure.caption.35}% 
+\contentsline {figure}{\numberline {\relax 5.7}{\ignorespaces ROXTracker settings in the \gls {ue4} editor.\relax }}{31}{figure.caption.36}% 
+\contentsline {figure}{\numberline {\relax 5.8}{\ignorespaces ROXTracker recording settings.\relax }}{31}{figure.caption.37}% 
+\contentsline {figure}{\numberline {\relax 5.9}{\ignorespaces Example of a running scene being recorded.\relax }}{32}{figure.caption.38}% 
+\contentsline {figure}{\numberline {\relax 5.10}{\ignorespaces ROXTracker playback settings.\relax }}{32}{figure.caption.39}% 
+\contentsline {figure}{\numberline {\relax 5.11}{\ignorespaces Output examples of the Tracker in playback mode.\relax }}{33}{figure.caption.40}% 
+\contentsline {figure}{\numberline {\relax 5.12}{\ignorespaces One-hot encoding format from a regular segmentation mask.}}{36}{figure.caption.41}% 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

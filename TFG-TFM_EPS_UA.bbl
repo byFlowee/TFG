@@ -31,13 +31,13 @@ Badrinarayanan, V.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Chen%
+L.~Chen%
 , Papandreou%
 , Kokkinos%
 , Murphy%
 \BCBL {}\ \BBA {} Yuille%
 }{%
-Chen%
+L.~Chen%
 \ \protect \BOthers {.}}{%
 {\protect \APACyear {2016}}%
 }]{%
@@ -63,6 +63,72 @@ Chen, L.%
 \APACjournalVolNumPages{CoRR}{abs/1606.00915}{}{}.
 \newblock
 \begin{APACrefURL} \url{http://arxiv.org/abs/1606.00915} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Y.~Chen%
+, Li%
+, Chen%
+\BCBL {}\ \BBA {} Gool%
+}{%
+Y.~Chen%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
+}]{%
+DBLP:journals/corr/abs-1812-05040}
+\APACinsertmetastar {%
+DBLP:journals/corr/abs-1812-05040}%
+\begin{APACrefauthors}%
+Chen, Y.%
+, Li, W.%
+, Chen, X.%
+\BCBL {}\ \BBA {} Gool, L\BPBI V.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Learning Semantic Segmentation from Synthetic Data: {A}
+  Geometrically Guided Input-Output Adaptation Approach} {Learning semantic
+  segmentation from synthetic data: {A} geometrically guided input-output
+  adaptation approach}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{CoRR}{abs/1812.05040}{}{}.
+\newblock
+\begin{APACrefURL} \url{http://arxiv.org/abs/1812.05040} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Garcia{-}Garcia%
+\ \protect \BOthers {.}}{%
+Garcia{-}Garcia%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
+}]{%
+DBLP:journals/corr/abs-1901-06514}
+\APACinsertmetastar {%
+DBLP:journals/corr/abs-1901-06514}%
+\begin{APACrefauthors}%
+Garcia{-}Garcia, A.%
+, Martinez{-}Gonzalez, P.%
+, Oprea, S.%
+, Castro{-}Vargas, J\BPBI A.%
+, Orts{-}Escolano, S.%
+, Rodr{\'{\i}}guez, J\BPBI G.%
+\BCBL {}\ \BBA {} Jover{-}Alvarez, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The RobotriX: An eXtremely Photorealistic and
+  Very-Large-Scale Indoor Dataset of Sequences with Robot Trajectories and
+  Interactions} {The robotrix: An extremely photorealistic and very-large-scale
+  indoor dataset of sequences with robot trajectories and interactions}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{CoRR}{abs/1901.06514}{}{}.
+\newblock
+\begin{APACrefURL} \url{http://arxiv.org/abs/1901.06514} \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -96,6 +162,37 @@ Geiger, A.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+He%
+, Zhang%
+, Ren%
+\BCBL {}\ \BBA {} Sun%
+}{%
+He%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+DBLP:journals/corr/HeZRS15}
+\APACinsertmetastar {%
+DBLP:journals/corr/HeZRS15}%
+\begin{APACrefauthors}%
+He, K.%
+, Zhang, X.%
+, Ren, S.%
+\BCBL {}\ \BBA {} Sun, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Deep Residual Learning for Image Recognition} {Deep
+  residual learning for image recognition}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{CoRR}{abs/1512.03385}{}{}.
+\newblock
+\begin{APACrefURL} \url{http://arxiv.org/abs/1512.03385} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Krizhevsky%
 , Sutskever%
 \BCBL {}\ \BBA {} E.~Hinton%
@@ -123,6 +220,37 @@ Krizhevsky, A.%
 \APACjournalVolNumPages{Neural Information Processing Systems}{25}{}{}.
 \newblock
 \begin{APACrefDOI} \doi{10.1145/3065386} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Lin%
+\ \protect \BOthers {.}}{%
+Lin%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2014}}%
+}]{%
+DBLP:journals/corr/LinMBHPRDZ14}
+\APACinsertmetastar {%
+DBLP:journals/corr/LinMBHPRDZ14}%
+\begin{APACrefauthors}%
+Lin, T.%
+, Maire, M.%
+, Belongie, S\BPBI J.%
+, Bourdev, L\BPBI D.%
+, Girshick, R\BPBI B.%
+, Hays, J.%
+\BDBL {}Zitnick, C\BPBI L.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Microsoft {COCO:} Common Objects in Context} {Microsoft
+  {COCO:} common objects in context}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{CoRR}{abs/1405.0312}{}{}.
+\newblock
+\begin{APACrefURL} \url{http://arxiv.org/abs/1405.0312} \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
