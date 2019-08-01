@@ -7,7 +7,7 @@
 
 \chapter{Desarrollo}
 \label{desarrollo}
-This chapter develops the main work of this thesis and is organized as follows. Section \ref{sec:expanding} will describe the process of automating the UnrealROX Actor. Section \ref{sec:tracker} will go through the process of recording sequences. Finally, Section \ref{sec:segnet} will cover all the deep learning work such as the network implementation and the data pre-processing.  
+\textit{This chapter develops the main work of this thesis and is organized as follows. Section \ref{sec:expanding} will describe the process of automating the UnrealROX Actor. Section \ref{sec:tracker} will go through the process of recording sequences. Finally, Section \ref{sec:segnet} will cover all the deep learning work such as the network implementation and the data pre-processing.  }
 
 \section{Expanding the UnrealROX Framework}
 \label{sec:expanding}
@@ -347,14 +347,182 @@ It is important to remark that the input data format for the masks is $(N \times
 \end{figure}
 \footnotetext{\url{https://www.jeremyjordan.me/semantic-segmentation/}}
 
+Also, when loading images from the UnrealROX dataset, segmentation masks are slightly different since we have more than 30 classes. Listing \ref{code:rox-onehot} shows a small script that encodes the segmentation masks so that it only contains the human and background class. Result can be seen in Figure \ref{fig:rox-onehot}.
+
+\begin{lstlisting}[style=Python-color, caption=Preprocessing the UnrealROX segmentation masks, frame=single, label=code:rox-onehot]
+imx_t = np.array(raw_image)
+imx_t = imx_t[:,:,:3]
+label_seg = np.zeros((2,224,224), dtype=np.int)
+
+label_seg[0][(imx_t==[255,0,0]).all(axis=2)] = 1
+label_seg[1][np.where(label_seg[0] == 0)] = 1
+
+\end{lstlisting}
+
+It works similarly to the one-hot encoding on the $load\_mask$ method on Listing \ref{code:UTPload}, we create a $(2 \times H \times W)$ zero-filled array. Then for the first layer we fill with ones the [255,0,0] RGB value since it corresponds to the human class, then for the second layer we simply invert the first layer to obtain the background.
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=1\linewidth]{archivos/rox_mask.png}
+			\caption{Sample UnrealROX segmentation mask.}
+	\end{subfigure}
+	
+	\begin{subfigure}[b]{0.6\textwidth}
+		\includegraphics[width=1\linewidth]{archivos/onehot_mask.png}
+		\caption{One-hot two-class segmentation mask.}
+	\end{subfigure}
+	
+	\caption{UnrealROX segmentation masks before and after the pre-process pass.}
+	\label{fig:rox-onehot}
+\end{figure}
+
 \subsection{Training the network}
 \label{sec:training}
 In this Subsection we will go through the network implementation (Subsection \ref{sec:model}) and the training script (Subsection \ref{sec:train_script}).
 
 \subsubsection{SegNet Model}
 \label{sec:model}
+In Section \ref{sec:segmentation_variants} we described the encoder-decoder variant used on \gls{cnn}s for semantic segmentation, specifically, we described the SegNet architecture, to sum it up, the encoder part is exactly the same as the VGG-16 shown in Figure \ref{fig:vgg16} while the decoder performs the reverse up-convolution as de decoder. This Subsection describes the model implementation we used\footnote{\url{https://github.com/Sayan98/pytorch-segnet/blob/master/src/model.py}} for this work.
 
+\begin{figure}[h]
+	\includegraphics[width=0.6\textwidth]{archivos/vgg16.png}
+	\centering
+	\caption{Illustration of the VGG-16 architecture.}
+	\label{fig:vgg16}
+\end{figure}
+
+The encoder and decoder layout equivalent in PyTorch is shown in Listings \ref{code:encoder} and \ref{code:decoder}. The decoder fundamentally consists of convolutional layers followed by a batch normalization. At the decoder, the convolutions are replaced by Convolutional Transposed layer, which applies transposed convolution that upsamples the outputs, batch normalization is also applied in every layer.
+
+\begin{lstlisting}[style=Python-color, caption=First layers of the SegNet encoder, frame=single, label=code:encoder]
+self.encoder_conv_00 = nn.Sequential(*[nn.Conv2d(in_channels=self.input_channels, out_channels=64, kernel_size=3, padding=1), nn.BatchNorm2d(64) ])
+
+self.encoder_conv_01 = nn.Sequential(*[ nn.Conv2d(in_channels=64, out_channels=64, kernel_size=3, padding=1), nn.BatchNorm2d(64)])
+
+...
+
+self.encoder_conv_42 = nn.Sequential(*[nn.Conv2d(in_channels=512, out_channels=512, kernel_size=3, padding=1), nn.BatchNorm2d(512)])
+\end{lstlisting}
+
+\begin{lstlisting}[style=Python-color, caption=First layers of the SegNet decoder, frame=single, label=code:decoder]
+self.decoder_convtr_42 = nn.Sequential(*[nn.ConvTranspose2d(in_channels=512, out_channels=512, kernel_size=3, padding=1), nn.BatchNorm2d(512)])
+
+self.decoder_convtr_41 = nn.Sequential(*[nn.ConvTranspose2d(in_channels=512, out_channels=512, kernel_size=3, padding=1), nn.BatchNorm2d(512)])
+
+...
+
+self.decoder_convtr_00 = nn.Sequential(*[nn.ConvTranspose2d(in_channels=64, out_channels=self.output_channels, kernel_size=3, padding=1)])
+
+\end{lstlisting}
+
+Then, the forward function of the model is shown in Listings \ref{code:encoder_forward} and \ref{code:decoder_forward}. On the decoder, as with every convolutional network, we apply the activation function between layers and pooling at the end of the convolution. In the decoder, however, the order is reversed, we first apply the reverse pooling function or unpooling, then the activation functions and, finally, in the output layer, we apply a softmax classifier in order to get pixel-wise predictions.
+
+\begin{lstlisting}[style=Python-color, caption=Forward function on the encoder, frame=single, label=code:encoder_forward]
+dim_0 = input_img.size()
+x_00 = F.relu(self.encoder_conv_00(input_img))
+x_01 = F.relu(self.encoder_conv_01(x_00))
+x_0, indices_0 = F.max_pool2d(x_01, kernel_size=2, stride=2, return_indices=True)
+
+...
+
+dim_4 = x_3.size()
+x_40 = F.relu(self.encoder_conv_40(x_3))
+x_41 = F.relu(self.encoder_conv_41(x_40))
+x_42 = F.relu(self.encoder_conv_42(x_41))
+x_4, indices_4 = F.max_pool2d(x_42, kernel_size=2, stride=2, return_indices=True)
+
+\end{lstlisting}
+
+\begin{lstlisting}[style=Python-color, caption=Forward function on the decoder, frame=single, label=code:decoder_forward]
+x_4d = F.max_unpool2d(x_4, indices_4, kernel_size=2, stride=2, output_size=dim_4)
+x_42d = F.relu(self.decoder_convtr_42(x_4d))
+x_41d = F.relu(self.decoder_convtr_41(x_42d))
+x_40d = F.relu(self.decoder_convtr_40(x_41d))
+dim_4d = x_40d.size()
+
+...
+
+x_0d = F.max_unpool2d(x_10d, indices_0, kernel_size=2, stride=2, output_size=dim_0)
+x_01d = F.relu(self.decoder_convtr_01(x_0d))
+x_00d = self.decoder_convtr_00(x_01d)
+dim_0d = x_00d.size()
+
+x_softmax = F.softmax(x_00d, dim=1)
+
+\end{lstlisting}
 
 \subsubsection{Training script}
 \label{sec:train_script}
 
+In order to train our model, a small training script was built. To do this, we first need to create our data loaders and split the data into train and validation splits. When training, we can not only use the training loss as a metric, since the network can over-fit the training samples, meaning that it will not be good at generalization. Listing \ref{code:dataloaders} shows how the PyTorch DataLoader\footnote{\url{https://pytorch.org/docs/stable/data.html}} class can be use to create a data loader.
+
+\begin{lstlisting}[style=Python-color, caption=Data loaders and train-val split, frame=single, label=code:dataloaders]
+full_dataset = UTPDataset(img_dir='dataset/dataset')
+
+train_size = int(0.8 * len(full_dataset))
+val_size = len(full_dataset) - train_size
+
+train_dataset, val_dataset = torch.utils.data.random_split(full_dataset, [train_size, val_size])
+
+train_dataloader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=6)
+val_dataloader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=6)
+
+data_loaders = {"train": train_dataloader, "val": val_dataloader}
+
+\end{lstlisting}
+
+In order to create two different data loaders for training and validation, we split the dataset with the $random\_split$ function. Then we create the two data loaders and insert them into a dictionary, this will allow us to easily differentiate the phase in every epoch.
+
+\begin{lstlisting}[style=Python-color, caption=Model criterion and optimizer definition, frame=single, label=code:optimizer]
+model = SegNet(input_channels=3, output_channels=2).cuda()
+criterion = torch.nn.CrossEntropyLoss().cuda()
+optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
+
+\end{lstlisting}
+
+Listing \ref{code:optimizer} shows the definition of our model, the criterion, which is the metric that will be used to determine how far our predictions are from the ground-truth annotation, in our case, we used Cross Entropy Loss. Finally we define our optimizer, which will be handling how we modify the network weights based on different criteria, in our case, we used the Adam optimizer.
+
+With all of the initialization ready, we can now start training, Algorithm \ref{alg:train} shows a simplified version of the training script. For every epoch, we will process the whole dataset, which is divided in two different loaders, the $phase$ loop will determine which phase is currently being processed and we change our model to the proper phase using the $train$ and $eval$ methods, then the inner most loop will iterate through all the batches of the loader. In this inner loop, we obtain the input RGB images and the target segmentation masks, perform the forward propagation or prediction and then the loss is computed based on our prediction and the desired one. It is important to remark that if we are in the training phase, we also need to compute the gradients based on our loss, as well as update the weights using our optimizer, these two steps are not needed in the validation phase since we are just doing it as a metric to know how the network is performing during training.\newline
+
+\begin{algorithm}[H]
+	\DontPrintSemicolon
+	\For{epoch < EPOCHS}{
+		\For{phase \textbf{in} ['train', 'val']}{
+			\eIf{phase == 'train'}{ model.train() }{ model.eval() }
+			\For{batch \textbf{in} data\_loaders[phase]}{
+				input, target = batch['image'], batch['mask']
+				
+				output = model(input)\;
+				loss = criterion(output, target)
+				
+				\If{phase == 'train'}{
+					loss.backward()\;
+					optimizer.step()
+				}
+				running\_loss += loss
+			}
+		}
+	}
+	\caption{Training script}
+	\label{alg:train}
+\end{algorithm}
+
+In order to prevent our model to overfit, model checkpoints were implemented. This method, although very simple, allows us to keep the best model obtained during training. Listing \ref{code:checkpoints} shows this implementation, where $prev\_loss$ is our best loss in the validation pass and $running\_loss$ our current validation loss. This is computed after every epoch. The $torch.save$ method will write to disk the $mode.state\_dict()$ which is a dictionary containing the model's learnable parameters (weights and biases).
+
+
+\begin{lstlisting}[style=Python-color, caption=Model checkpoints, frame=single, label=code:checkpoints]
+if running_loss < prev_loss:
+	torch.save(model.state_dict(), os.path.join('.', 'epoch-{}.pth'.format(epoch+1)))
+	prev_loss = running_loss
+
+\end{lstlisting}
+
+\subsubsection{Loading a trained model}
+In order to load the model once it has been trained, PyTorch provides the $load\_state\_dict$ method, Listing \ref{code:load_model} shows an example usage. It is important to note that this will only work for inference and not for training, since there are multiple parameters like the optimizer or the loss metrics that are not saved on the $state\_dict$, however, PyTorch does provide with a custom $save$ method that allows to save a custom $dict$ and thus allows to save all the necessary parameters so that it can be used to resume training.
+
+\begin{lstlisting}[style=Python-color, caption=Load model checkpoint, frame=single, label=code:load_model]
+model = SegNet(input_channels=3, output_channels=2)
+model.load_state_dict(torch.load(PATH))
+model.eval()
+
+\end{lstlisting}

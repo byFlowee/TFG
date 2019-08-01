@@ -7,9 +7,14 @@
 
 \chapter{Materials and Methods}
 \label{metodologia}
-\textit{In this chapter we will go through some of the software and hardware specification related to this work, making special emphasis in those we ended up using as our main resources. We will divide this chapter in 4 different parts. First, we needed a game or 3D engine framework in order to generate our synthetic data. Second, we needed a high level deep learning framework in order to implement some of the current architectures, since most of them are quite complex and building them from the ground up is a extremely complex task and out of the scope of this work. Third, we need real world datasets in order to test our synthetic data trained algorithms. And finally, we need extremely powerful GPU computing hardware in order to train and test these architectures.}
 
-\section{Unreal Engine 4}
+\textit{This chapter is organized as follows: Section \ref{sec:software} will analyze some of the software specification used in this thesis, focusing on the 3D Game engine framework and working environments. Then, in Section \ref{sec:hardware} we will review our hardware equipment used for this project.}
+
+\section{Software}
+\label{sec:software}
+In order to carry out this project, it was necessary to carefully choose our working environments and programming tools, in this Section, we go through some of our software of choice as well as giving a brief explanation on why were chosen.
+
+\subsection{Unreal Engine 4}
 \gls{ue4} is a very powerful, highly portable game engine, written in C++ and developed by Epic Games\footnote{\url{https://www.unrealengine.com/en-US/}}.
 The main advantages \gls{ue4} offers over other game engines and the reason UnrealROX was built using it are listed as follows:
 
@@ -28,10 +33,10 @@ The main advantages \gls{ue4} offers over other game engines and the reason Unre
 \end{figure}
 \footnotetext{\url{https://ue4arch.com/projects/viennese-apartment/}}
 
-\section{Visual Studio 2017}
+\subsection{Visual Studio 2017}
 Visual Studio is an \gls{ide} developed by Microsoft and used for software development. It supports a variety of programming languages, although mainly focuses on C++, C\# and the .NET framework. It includes a code editor, file browser and debugger. It also includes plugins, support for syntax highlighting and comes integrated with IntelliSense, which allows for code completion, quick information of variables and methods, amongst others features.
 
-However the main reason Visual Studio was chosen as the main \gls{ide} for this project is the integration with \gls{ue4}. The \gls{ue4} editor has options to quickly visualize any object from the context menu or the scene in Visual Studio, allowing to make quick changes, recompile and launch in very little time.
+However, the main reason Visual Studio was chosen as the main \gls{ide} for this project is the integration with \gls{ue4}. The \gls{ue4} editor has options to quickly visualize any object from the context menu or the scene in Visual Studio, allowing to make quick changes, recompile and launch in very little time.
 
 \begin{figure}[h]
 	\includegraphics[width=0.7\textwidth]{archivos/vs_ide.png}
@@ -40,8 +45,9 @@ However the main reason Visual Studio was chosen as the main \gls{ide} for this 
 	\label{fig:visual_studio}
 \end{figure}
 
-\section{Google Colab}
-Colaboratory\footnote{\url{https://colab.research.google.com/}} is a free Jupyter\footnote{\url{https://jupyter.org}} notebook environment that runs entirely on the cloud, requires no setup and is powered by Google. Jupyter notebook is a cell based environment that allows to create and share documents containing live code\texttt{}, equations, images and text. It is mostly used with python, however it has integration with other languages such as R, C++, Scheme or Ruby. Its integration within Google Colab makes it a very easy to use tool for prototyping and quick testing, Figure \ref{fig:colab} shows the main user interface.
+\subsection{Google Colab}
+\label{sec:colab}
+Google Colaboratory\footnote{\url{https://colab.research.google.com/}} is a free Jupyter\footnote{\url{https://jupyter.org}} notebook environment that runs entirely on the cloud, requires no setup and is powered by Google. Jupyter notebook is a cell based environment that allows to create and share documents containing live code\texttt{}, equations, images and text. It is mostly used with python, however it has integration with other languages such as R, C++, Scheme or Ruby. Its integration within Google Colab makes it a very easy to use tool for prototyping and quick testing, Figure \ref{fig:colab} shows the main user interface.
 
 \begin{figure}
 	\centering
@@ -52,10 +58,14 @@ Colaboratory\footnote{\url{https://colab.research.google.com/}} is a free Jupyte
 
 Since it is a free environment one may think its not to powerful hardware wise, however this is not the case, it provides more than enough to run deep architectures with ease, although it is not a tool intended for long-running background computation and the system will free resources every 12 hours.
 The full hardware specification is shown in table \ref{table:colab}.
-\section{Frameworks}
-In this section, we will go trough some of the most recent and popular \gls{dl} frameworks.
 
-\subsection{TensorFlow}
+\subsection{Docker}
+\todo{TODO}
+
+\subsection{Frameworks}
+\gls{dl} has been arising in popularity in the last decade and most current state-of-art \gls{ai} algorithms are based on deep architectures. Because of this, multiple \gls{dl} frameworks have been developed to ease the low level implementation of these algorithms.
+
+\subsubsection{TensorFlow}
 TensorFlow is a open source library for numerical computation based on the idea of data flow graphs. In TensorFlow, the graph nodes represent the mathematical operations, while the edges represent the multidimensional data arrays (or tensors) flowing between them, Figure \ref{fig:tensorflow} illustrates an example of a flow graph representation.
 
 \begin{figure}[h]
@@ -67,16 +77,16 @@ TensorFlow is a open source library for numerical computation based on the idea 
 
 TensorFlow was created by the researches at Google Brain for the purpose of conducting machine learning and deep neural network research, its low level nature allows for a very fine-grained framework that can be use to build any architecture from the ground up and the tensor-graph structure also allows for very easy distribution on the CPU-GPU.
 
-In a first approach, TensorFlow was going to be the main framework for this project, but was finally discarded since high level frameworks will ease the work and the low level implementation of the networks fall out of the scope of this project.
+In a first approach, TensorFlow was going to be the main framework for this project, but was finally discarded since high level frameworks will ease the work and the low level implementation of the networks falls out of the scope of this project.
 
-\subsection{Keras}
+\subsubsection{Keras}
 Keras is a high level framework written in Java that can use TensorFlow, CNTK or Theano as backend. It was developed to be an easy to use framework, allowing for very fast experimentation and prototyping, abstracting the user of some of the more complex low level tasks with a very user friendly interface. This also makes Keras a very good entry framework for beginners that still don't have a solid foundation on deep learning.
 
 Keras provides two different APIs for different model building approaches. The Sequential API which allows to simply stack layer after layer, allowing for a very simple and easy to use interface for models with a input to output data flow. The Functional API however allows for more complex models by understanding each layer as a node graph, allowing for different, more complex and non sequential models.
 
 At the start of this project, Keras was used in order to implement simple neural networks with educational purposes since it is a very easy and intuitive framework. We discarded it for the end project since we believe there are better alternatives that allow for more flexibility.
- 
-\subsection{PyTorch}
+
+\subsubsection{PyTorch}
 PyTorch is an open source, Python-based, \gls{gpu}-Ready computing package and machine learning framework, just like other frameworks, it provides Tensors, which can be moved both to the \gls{cpu} and \gls{gpu}, as well as all the algebra and math operations for them, they can also be converted from NumPy and other Tensor libraries.
 
 Another PyTorch feature that is worth mentioning is the modularity, writing new modules for a \gls{nn} is very straightforward and they can be written in both native python and other NumPy based libraries or with the torch \gls{api}. Also it has multiple pretrained networks, datasets and well documented examples.
@@ -93,15 +103,16 @@ PyTorch is also in continuous development and has been steadily gaining populari
 PyTorch was the framework of choice for this project since it allows for easy prototyping without losing the flexibility to make architectural modifications to the networks. Its syntax is also very easy for anyone that has experience with python which made it perfect for this project.
 
 \section{Hardware}
+\label{sec:hardware}
 It is widely known how computationally demanding \gls{dl} algorithms are, specially when dealing with large amounts of data. Also, in order to smoothly run \gls{ue4} while recording and generating all the output images we need a mid to high end computer. In this section we review the ones that have been mainly used in this work.
 
-\subsection{Asimov}
+\subsection{Clarke}
 
 The structure of neural networks where multiple data streams are organized in layers allow for very easy paralelization. Because of this GPU's are extremely powerful when executing said algorithms.
 
-The Asimov server was deployed with this in mind and features three different NVIDIA GPUs. The most powerful of them, the Titan X is aimed towards \gls{dl} computing, the Tesla K40 is also used for computational purposes. The last of them is a GTX 730 that will only be used for visualization purposes. The full hardware specification for the Asimov server is shown in Figure \ref{table:asimov}.
+The Clarke server was deployed with this in mind and features three different NVIDIA GPUs. The most powerful of them, the Titan X is aimed towards \gls{dl} computing, the Tesla K40 is also used for computational purposes. The last of them is a Quadro 2000 that will only be used for visualization purposes. The full hardware specification for the Clarke server is shown in Figure \ref{table:clarke}.
 
-As for the software, Asimov runs Ubuntu 16.04 with Linux kernel 4.4.0-21-generic for x86\_64 architecture. It also runs Docker, which allows any user to configure its own container with any CUDA / CUDNN version and DL framework.
+As for the software, Asimov runs Ubuntu 16.04 with Linux kernel 4.15.0-39-generic for x86\_64 architecture. It also runs Docker, which allows any user to configure its own container with any CUDA / CUDNN version and \gls{dl} framework.
 
 Also, it is worth mentioning  Asimov was configured for remote access using SSH with public/private key pair authentication. The installed versions are OpenSSH 7.2p2 with OpenSSL 1.0.2 and X11 forwarding was configured for visualization purposes.
 
@@ -113,23 +124,23 @@ Also, it is worth mentioning  Asimov was configured for remote access using SSH 
 		\hline
 		Motherboard & Asus X99-A \newline Intel X99 Chipset \newline 4x PCIe 3.0/2.0 x 16(x16, x16/ x16, x16/ x16/ x8) \\ 
 		\hline
-		CPU & Intel(R) Core(TM) i7-5820K CPU @ 3.3GHz \newline 3.3 GHz (3.6 GHz Turbo Boost) \newline 6 cores (12 threads) \newline 65 W TDP \\
+		CPU & Intel(R) Core(TM) i7-6800K CPU @ 3.4GHz \newline 3.4 GHz (3.8 GHz Turbo Boost) \newline 6 cores (12 threads) \newline 140 W TDP \\
 		\hline
-		GPU (visualization) & NVIDIA GeForce GT730 \newline 96 CUDA cores \newline 1024 MiB of DDR3 Video Memory \newline PCIe 2.0 \newline 49 W TDP \\
+		GPU (visualization) & NVIDIA GeForce Quadro 2000 \newline 192 CUDA cores \newline 1 GiB of DDR5 Video Memory \newline PCIe 2.0 \newline 62 W TDP \\
 		\hline
 		GPU (deep learning) & NVIDIA GeForce Titan X \newline 3072 CUDA cores \newline 12 GiB of GDDR5 Video Memory \newline PCIe 3.0 \newline 250 W TDP\\
 		\hline
 		GPU (compute) & NVIDIA Tesla K40c \newline 2880 CUDA cores \newline 12 GiB of GDDR5 Video Memory \newline PCIe 3.0 \newline 235 W TDP \\
 		\hline
-		RAM & 4 x 8 GiB Kingston Hyper X DDR4 2666 MHz CL13 \\
+		RAM & 2 x 8 GiB G.Skill X DDR4 2400 MHz CL15 \\
 		\hline
 		Storage (Data) & (RAID1) Seagate Barracuda 7200rpm 3TiB SATA III HDD \\
 		\hline
-		Storage (OS) & Samsung 850 EVO 500GiB SATA III SSD \\
+		Storage (OS) & Samsung 850 EVO 250 GiB SATA III SSD \\
 		\hline
 	\end{tabular}
-	\caption{Hardware specification for Asimov.}
-	\label{table:asimov}
+	\caption{Hardware specification for Clarke.}
+	\label{table:clarke}
 \end{table}
 
 \subsection{Personal Computer}
@@ -160,7 +171,7 @@ During the developing of this work, my personal computer was used in order to ru
 \end{table}
 
 \subsection{Google Colab}
-As explained in Section \ref{}, the Google Colaboratory environment was used in the prototyping and testing process. The hardware specification where this environment runs is shown in Table \ref{table:colab}.
+As explained in Subsection \ref{sec:colab}, the Google Colaboratory environment was used in the prototyping and testing process. The hardware specification where this environment runs is shown in Table \ref{table:colab}. Since Colab is run in the cloud and assigns the user a virtual machine, the exact specifications are not known, although it is enough to get an idea of its computational power.
 
 \begin{table}[h]
 	\centering 

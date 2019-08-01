@@ -7,3 +7,25 @@
 
 \chapter{Results}
 \label{results}
+\textit{This chapter will go through the results of our experimentation with the previously described implementations. Section \ref{sec:no_synt} will review the results when training without synthetic data. Section \ref{sec:with_synth} will focus on the synthetic data experimentation.}
+
+\section{Training with no synthetic data}
+\label{sec:no_synt}
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+	\begin{axis}[width=10cm,xlabel=Epoch, ylabel=Loss, legend style={at={(0.95,0.95)}}, ymin=0.01, ymax=0.04]
+		\addplot table [mark=none, x=epoch, y=train_loss, col sep=comma] {archivos/no-synthetic1.csv};
+		\addlegendentry{Training loss};
+		
+		\addplot table [mark=none, x=epoch, y=val_loss, col sep=comma] {archivos/no-synthetic1.csv};
+		\addlegendentry{Validation loss};
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Training and validation loss without synthetic data.}
+	\label{fig:loss_no_synthetic}
+\end{figure}
+
+\section{Adding synthetic data to the training dataset}
+\label{sec:with_synth}

@@ -27,10 +27,10 @@
 \newcommand{\miNombre}{Jordi Amorós Moreno}
 \newcommand{\miEmail}{jam80@alu.ua.es}
 % Datos del tutor/es
-\newcommand{\miTutor}{Nombre Apellido1 Apellido2 (tutor1)}
+\newcommand{\miTutor}{José García-Rodriguez}
 \newcommand{\miTutorB}{Nombre Apellido1 Apellido2 (tutor2)}
-\newcommand{\departamentoTutor}{Departamento del tutor}
-\newcommand{\departamentoTutorB}{Departamento del cotutor}
+\newcommand{\departamentoTutor}{Departamento de Tecnología Informática y Computación}
+\newcommand{\departamentoTutorB}{Departamento de Tecnología Informática y Computación}
 % Datos de la facultada y universidad
 \newcommand{\miFacultad}{Escuela Politécnica Superior}
 \newcommand{\miFacultadCorto}{EPS UA}
@@ -101,11 +101,19 @@ pdftitle = {\titulo},
 % Incluye el .tex que contiene el preámbulo, agradecimientos y dedicatorias.
 \input{capitulos/preliminaresconagradecimientos} 
 
+
 % Incluye después del archivo anterior el indice y lista de figuras, tablas y códigos.
 \tableofcontents	% Índice
 \listoffigures		% Índice de figuras
 \listoftables		% Índice de tablas
 \lstlistoflistings	% Índice de códigos
+%%%%
+% CONTENIDO. LISTA DE ACRÓNIMOS. Comenta las líneas si no lo deseas incluir.
+%%%%
+% Incluye el listado de acrónimos utilizados en el trabajo. 
+\printglossary[style=modsuper,type=\acronymtype,title={List of Acronyms}]
+% Añade el resto de acrónimos si así se desea. Si no elimina el comando siguiente
+\glsaddall
 
 % Inicia la numeración habitual.
 \mainmatter
@@ -115,7 +123,6 @@ pdftitle = {\titulo},
 %%%%
 \input{capitulos/Introduccion}	% Plantilla: Se muestran contenidos
 \input{capitulos/marcoteorico}	% Plantilla: Se muestran listas
-\input{capitulos/objetivos}		% Plantilla: Se muestran tablas
 \input{capitulos/metodologia}	% Plantilla: Se muestran figuras
 \input{capitulos/desarrollo}		% Plantilla: Se muestran listados
 \input{capitulos/resultados}		% Plantilla: Se muestran gráficas
@@ -127,14 +134,6 @@ pdftitle = {\titulo},
 \nocite{*} %incluye TODOS los documentos de la base de datos bibliográfica sean o no citados en el texto
 \bibliography{bibliografia/bibliografia} % Archivo que contiene la bibliografía
 \bibliographystyle{apacite}
-
-%%%%
-% CONTENIDO. LISTA DE ACRÓNIMOS. Comenta las líneas si no lo deseas incluir.
-%%%%
-% Incluye el listado de acrónimos utilizados en el trabajo. 
-\printglossary[style=modsuper,type=\acronymtype,title={Lista de Acrónimos y Abreviaturas}]
-% Añade el resto de acrónimos si así se desea. Si no elimina el comando siguiente
-\glsaddallunused 
 
 %%%%
 % CONTENIDO. Anexos - Añade o elimina según tus necesidades

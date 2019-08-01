@@ -30,8 +30,8 @@ Semantic segmentation is not so different from classic object recognition, in fa
 	\caption{ \textbf{(a)} Object detection
 		\textbf{(b)} Object localization
 		\textbf{(c)} Multiple object localization
-		\textbf{(a)} Semantic segmentation
-		\textbf{(b)} Instance segmentation.}
+		\textbf{(d)} Semantic segmentation
+		\textbf{(e)} Instance segmentation.}
 	\label{fig:object_recognition}
 \end{figure}
 
@@ -159,6 +159,7 @@ ResNet \cite{DBLP:journals/corr/HeZRS15} was first introduced by Microsoft resea
 Multi Dimensional Recurrent Neural Network (MDRNN) are a variation of regular RNN that allow them to work with $d$ spatio-temporal dimensions of the data. The architecture proposed by (cite) used regular RNN instead of MDRNN, where every convolution + pooling layer is replaced by four RNN's that sweep the image across in four directions. 
 
 \subsection{Semantic Segmentation Methods}
+\label{sec:segmentation_variants}
 All the image recognition problem solutions based on convolutional architectures, whether it is recognition, detection, localization or segmentation, they all share a big common module, which is the convolution layers that will extract the features of any image, then the feature maps can be applied to any classification network structure depending on the desired output format.
 
 Today, almost every semantic segmentation architecture uses the \gls{fcn} by \cite{DBLP:journals/corr/LongSD14}. The idea behind this is to replace the classic fully connected layers of \gls{cnn}s with \gls{fcn}s in order to obtain a spatial map instead of classification outputs, this way we can obtain pixel-wise classification while still using the inferred knowledge and power of the \gls{cnn}s to extract the features. However, a new problem arises when using \gls{cnn}s for semantic segmentation since  convolutional layers (convolution + pooling) downsample the input image in order to learn features, this downsampling does not matter when applied to classification problems, however, when doing pixel-wise classification, we require the output image to have the same size as the input. To overcome this problem, spatial maps are then upsampled by using deconvolution layers as shown in \cite{deconvolution}.
