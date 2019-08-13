@@ -1,60 +1,7 @@
-This is BibTeX, Version 0.99d (TeX Live 2018/Arch Linux)
-Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
-The top-level auxiliary file: TFG-TFM_EPS_UA.aux
+This is BibTeX, Version 0.99dThe top-level auxiliary file: TFG-TFM_EPS_UA.aux
 The style file: apacite.bst
-Reallocated glb_str_ptr (elt_size=8) to 20 items from 10.
-Reallocated global_strs (elt_size=20001) to 20 items from 10.
-Reallocated glb_str_end (elt_size=8) to 20 items from 10.
-Reallocated singl_function (elt_size=8) to 100 items from 50.
-Reallocated wiz_functions (elt_size=8) to 6000 items from 3000.
-Reallocated singl_function (elt_size=8) to 100 items from 50.
-Reallocated singl_function (elt_size=8) to 100 items from 50.
-Reallocated wiz_functions (elt_size=8) to 9000 items from 6000.
-Reallocated singl_function (elt_size=8) to 100 items from 50.
 Database file #1: bibliografia/bibliografia.bib
 A bad cross reference---entry "DBLP:journals/corr/SimonyanZ14a"
 refers to entry "DBLP:conf/iclr/2015", which doesn't exist
-Warning--I didn't find a database entry for ""
 apacite.bst [2013/07/21 v6.03 APA bibliography style]
-You've used 16 entries,
-            6951 wiz_defined-function locations,
-            1372 strings with 15045 characters,
-and the built_in function-call counts, 36798 in all, are:
-= -- 4397
-> -- 371
-< -- 1806
-+ -- 1960
-- -- 32
-* -- 2446
-:= -- 6677
-add.period$ -- 68
-call.type$ -- 16
-change.case$ -- 279
-chr.to.int$ -- 0
-cite$ -- 32
-duplicate$ -- 1146
-empty$ -- 1403
-format.name$ -- 697
-if$ -- 6788
-int.to.chr$ -- 0
-int.to.str$ -- 48
-missing$ -- 0
-newline$ -- 461
-num.names$ -- 128
-pop$ -- 642
-preamble$ -- 1
-purify$ -- 68
-quote$ -- 0
-skip$ -- 2218
-stack$ -- 0
-substring$ -- 2127
-swap$ -- 610
-text.length$ -- 45
-text.prefix$ -- 0
-top$ -- 1
-type$ -- 1472
-warning$ -- 0
-while$ -- 243
-width$ -- 0
-write$ -- 616
 (There was 1 error message)

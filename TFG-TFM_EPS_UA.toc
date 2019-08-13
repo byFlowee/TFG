@@ -4,21 +4,21 @@
 \contentsline {section}{\numberline {1.1}Overview}{1}{section.1.1}% 
 \contentsline {section}{\numberline {1.2}Motivation}{1}{section.1.2}% 
 \contentsline {section}{\numberline {1.3}Proposal and Goals}{2}{section.1.3}% 
-\contentsline {chapter}{\numberline {2}State of Art}{3}{chapter.2}% 
+\contentsline {chapter}{\numberline {2}State of the Art}{3}{chapter.2}% 
 \contentsline {section}{\numberline {2.1}Introduction}{3}{section.2.1}% 
 \contentsline {section}{\numberline {2.2}Sim 2 Real}{3}{section.2.2}% 
-\contentsline {subsection}{\numberline {2.2.1}VirtualHome}{7}{subsection.2.2.1}% 
-\contentsline {subsection}{\numberline {2.2.2}UnrealROX}{8}{subsection.2.2.2}% 
+\contentsline {subsection}{\numberline {2.2.1}VirtualHome}{6}{subsection.2.2.1}% 
+\contentsline {subsection}{\numberline {2.2.2}UnrealROX}{7}{subsection.2.2.2}% 
 \contentsline {section}{\numberline {2.3}Common Architectures}{8}{section.2.3}% 
 \contentsline {subsection}{\numberline {2.3.1}AlexNet}{8}{subsection.2.3.1}% 
-\contentsline {subsection}{\numberline {2.3.2}VGG}{9}{subsection.2.3.2}% 
+\contentsline {subsection}{\numberline {2.3.2}VGG}{8}{subsection.2.3.2}% 
 \contentsline {subsection}{\numberline {2.3.3}GoogLeNet}{9}{subsection.2.3.3}% 
 \contentsline {subsection}{\numberline {2.3.4}ResNet}{9}{subsection.2.3.4}% 
 \contentsline {subsection}{\numberline {2.3.5}ReNet}{10}{subsection.2.3.5}% 
 \contentsline {subsection}{\numberline {2.3.6}Semantic Segmentation Methods}{10}{subsection.2.3.6}% 
 \contentsline {subsubsection}{\numberline {2.3.6.1}Decoder Variant}{10}{subsubsection.2.3.6.1}% 
 \contentsline {subsubsection}{\numberline {2.3.6.2}Dilated Convolutions}{11}{subsubsection.2.3.6.2}% 
-\contentsline {subsubsection}{\numberline {2.3.6.3}Conditional Random Fields}{12}{subsubsection.2.3.6.3}% 
+\contentsline {subsubsection}{\numberline {2.3.6.3}Conditional Random Fields}{11}{subsubsection.2.3.6.3}% 
 \contentsline {section}{\numberline {2.4}Datasets}{12}{section.2.4}% 
 \contentsline {subsection}{\numberline {2.4.1}PASCAL}{12}{subsection.2.4.1}% 
 \contentsline {subsection}{\numberline {2.4.2}Semantic Boundaries Dataset}{12}{subsection.2.4.2}% 
@@ -32,31 +32,32 @@
 \contentsline {subsection}{\numberline {3.1.3}Google Colab}{17}{subsection.3.1.3}% 
 \contentsline {subsection}{\numberline {3.1.4}Docker}{17}{subsection.3.1.4}% 
 \contentsline {subsection}{\numberline {3.1.5}Frameworks}{17}{subsection.3.1.5}% 
-\contentsline {subsubsection}{\numberline {3.1.5.1}TensorFlow}{17}{subsubsection.3.1.5.1}% 
-\contentsline {subsubsection}{\numberline {3.1.5.2}Keras}{18}{subsubsection.3.1.5.2}% 
+\contentsline {subsubsection}{\numberline {3.1.5.1}TensorFlow}{18}{subsubsection.3.1.5.1}% 
+\contentsline {subsubsection}{\numberline {3.1.5.2}Keras}{19}{subsubsection.3.1.5.2}% 
 \contentsline {subsubsection}{\numberline {3.1.5.3}PyTorch}{19}{subsubsection.3.1.5.3}% 
-\contentsline {section}{\numberline {3.2}Hardware}{19}{section.3.2}% 
-\contentsline {subsection}{\numberline {3.2.1}Clarke}{19}{subsection.3.2.1}% 
-\contentsline {subsection}{\numberline {3.2.2}Personal Computer}{21}{subsection.3.2.2}% 
-\contentsline {subsection}{\numberline {3.2.3}Google Colab}{21}{subsection.3.2.3}% 
-\contentsline {chapter}{\numberline {4}Desarrollo}{23}{chapter.4}% 
+\contentsline {section}{\numberline {3.2}Hardware}{20}{section.3.2}% 
+\contentsline {subsection}{\numberline {3.2.1}Clarke}{20}{subsection.3.2.1}% 
+\contentsline {subsection}{\numberline {3.2.2}Personal Computer}{20}{subsection.3.2.2}% 
+\contentsline {subsection}{\numberline {3.2.3}Google Colab}{20}{subsection.3.2.3}% 
+\contentsline {chapter}{\numberline {4}Data Generation and Semantic Segmentation}{23}{chapter.4}% 
 \contentsline {section}{\numberline {4.1}Expanding the UnrealROX Framework}{23}{section.4.1}% 
 \contentsline {subsection}{\numberline {4.1.1}The ROXBasePawn Class}{23}{subsection.4.1.1}% 
 \contentsline {subsection}{\numberline {4.1.2}The ROXBotPawn Class}{23}{subsection.4.1.2}% 
 \contentsline {subsection}{\numberline {4.1.3}Animating the ROXBotPawn}{25}{subsection.4.1.3}% 
 \contentsline {section}{\numberline {4.2}Recording sequences with UnrealROX}{26}{section.4.2}% 
-\contentsline {subsection}{\numberline {4.2.1}Recording mode}{27}{subsection.4.2.1}% 
-\contentsline {subsection}{\numberline {4.2.2}Playback mode}{28}{subsection.4.2.2}% 
-\contentsline {section}{\numberline {4.3}Implementing a SegNet using PyTorch}{30}{section.4.3}% 
+\contentsline {subsection}{\numberline {4.2.1}Recording mode}{28}{subsection.4.2.1}% 
+\contentsline {subsection}{\numberline {4.2.2}Playback mode}{29}{subsection.4.2.2}% 
+\contentsline {section}{\numberline {4.3}Implementing a SegNet using PyTorch}{31}{section.4.3}% 
 \contentsline {subsection}{\numberline {4.3.1}Preprocessing the dataset}{31}{subsection.4.3.1}% 
 \contentsline {subsubsection}{\numberline {4.3.1.1}Merging the segmentation masks}{31}{subsubsection.4.3.1.1}% 
 \contentsline {subsubsection}{\numberline {4.3.1.2}Creating the dataset class}{32}{subsubsection.4.3.1.2}% 
-\contentsline {subsection}{\numberline {4.3.2}Training the network}{34}{subsection.4.3.2}% 
-\contentsline {subsubsection}{\numberline {4.3.2.1}SegNet Model}{34}{subsubsection.4.3.2.1}% 
-\contentsline {subsubsection}{\numberline {4.3.2.2}Training script}{37}{subsubsection.4.3.2.2}% 
-\contentsline {subsubsection}{\numberline {4.3.2.3}Loading a trained model}{38}{subsubsection.4.3.2.3}% 
+\contentsline {subsubsection}{\numberline {4.3.1.3}From UnrealROX to UTP}{33}{subsubsection.4.3.1.3}% 
+\contentsline {subsection}{\numberline {4.3.2}Training the network}{36}{subsection.4.3.2}% 
+\contentsline {subsubsection}{\numberline {4.3.2.1}SegNet Model}{36}{subsubsection.4.3.2.1}% 
+\contentsline {subsubsection}{\numberline {4.3.2.2}Training script}{38}{subsubsection.4.3.2.2}% 
+\contentsline {subsubsection}{\numberline {4.3.2.3}Loading a trained model}{40}{subsubsection.4.3.2.3}% 
 \contentsline {chapter}{\numberline {5}Results}{41}{chapter.5}% 
 \contentsline {section}{\numberline {5.1}Training with no synthetic data}{41}{section.5.1}% 
 \contentsline {section}{\numberline {5.2}Adding synthetic data to the training dataset}{41}{section.5.2}% 
 \contentsline {chapter}{\numberline {6}Conclusions}{43}{chapter.6}% 
-\contentsline {chapter}{\nonumberline Bibliography}{45}{chapter*.48}% 
+\contentsline {chapter}{\nonumberline Bibliography}{45}{chapter*.49}% 

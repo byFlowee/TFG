@@ -99,6 +99,68 @@ Chen, Y.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Cordts%
+\ \protect \BOthers {.}}{%
+Cordts%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2016}}%
+}]{%
+DBLP:journals/corr/CordtsORREBFRS16}
+\APACinsertmetastar {%
+DBLP:journals/corr/CordtsORREBFRS16}%
+\begin{APACrefauthors}%
+Cordts, M.%
+, Omran, M.%
+, Ramos, S.%
+, Rehfeld, T.%
+, Enzweiler, M.%
+, Benenson, R.%
+\BDBL {}Schiele, B.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2016}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The Cityscapes Dataset for Semantic Urban Scene
+  Understanding} {The cityscapes dataset for semantic urban scene
+  understanding}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{CoRR}{abs/1604.01685}{}{}.
+\newblock
+\begin{APACrefURL} \url{http://arxiv.org/abs/1604.01685} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Everingham%
+\ \protect \BOthers {.}}{%
+Everingham%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+Everingham15}
+\APACinsertmetastar {%
+Everingham15}%
+\begin{APACrefauthors}%
+Everingham, M.%
+, Eslami, S\BPBI M\BPBI A.%
+, Van~Gool, L.%
+, Williams, C\BPBI K\BPBI I.%
+, Winn, J.%
+\BCBL {}\ \BBA {} Zisserman, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{{\APACmonth{01}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The Pascal Visual Object Classes Challenge: A
+  Retrospective} {The pascal visual object classes challenge: A
+  retrospective}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{International Journal of Computer
+  Vision}{111}{1}{98--136}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Garcia{-}Garcia%
 \ \protect \BOthers {.}}{%
 Garcia{-}Garcia%
@@ -162,6 +224,67 @@ Geiger, A.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Graves%
+, Fern{\'{a}}ndez%
+\BCBL {}\ \BBA {} Schmidhuber%
+}{%
+Graves%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2007}}%
+}]{%
+DBLP:journals/corr/abs-0705-2011}
+\APACinsertmetastar {%
+DBLP:journals/corr/abs-0705-2011}%
+\begin{APACrefauthors}%
+Graves, A.%
+, Fern{\'{a}}ndez, S.%
+\BCBL {}\ \BBA {} Schmidhuber, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Multi-Dimensional Recurrent Neural Networks}
+  {Multi-dimensional recurrent neural networks}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{CoRR}{abs/0705.2011}{}{}.
+\newblock
+\begin{APACrefURL} \url{http://arxiv.org/abs/0705.2011} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Hariharan%
+, Arbelaez%
+, Bourdev%
+, Maji%
+\BCBL {}\ \BBA {} Malik%
+}{%
+Hariharan%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2011}}%
+}]{%
+BharathICCV2011}
+\APACinsertmetastar {%
+BharathICCV2011}%
+\begin{APACrefauthors}%
+Hariharan, B.%
+, Arbelaez, P.%
+, Bourdev, L.%
+, Maji, S.%
+\BCBL {}\ \BBA {} Malik, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2011}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Semantic Contours from Inverse Detectors} {Semantic
+  contours from inverse detectors}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {International Conference on Computer Vision (ICCV).}
+  {International conference on computer vision (iccv).}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 He%
 , Zhang%
 , Ren%
@@ -220,6 +343,38 @@ Krizhevsky, A.%
 \APACjournalVolNumPages{Neural Information Processing Systems}{25}{}{}.
 \newblock
 \begin{APACrefDOI} \doi{10.1145/3065386} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Lassner%
+\ \protect \BOthers {.}}{%
+Lassner%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+Lassner:UP:2017}
+\APACinsertmetastar {%
+Lassner:UP:2017}%
+\begin{APACrefauthors}%
+Lassner, C.%
+, Romero, J.%
+, Kiefel, M.%
+, Bogo, F.%
+, Black, M\BPBI J.%
+\BCBL {}\ \BBA {} Gehler, P\BPBI V.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{{\APACmonth{07}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Unite the People: Closing the Loop Between 3D and 2D
+  Human Representations} {Unite the people: Closing the loop between 3d and 2d
+  human representations}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {IEEE Conf. on Computer Vision and Pattern Recognition
+  (CVPR).} {Ieee conf. on computer vision and pattern recognition (cvpr).}
+\newblock
+\begin{APACrefURL} \url{http://up.is.tuebingen.mpg.de} \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -312,6 +467,37 @@ Martinez{-}Gonzalez, P.%
 \APACjournalVolNumPages{CoRR}{abs/1810.06936}{}{}.
 \newblock
 \begin{APACrefURL} \url{http://arxiv.org/abs/1810.06936} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+O'~Mahony%
+\ \protect \BOthers {.}}{%
+O'~Mahony%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2020}}%
+}]{%
+inbook}
+\APACinsertmetastar {%
+inbook}%
+\begin{APACrefauthors}%
+O'~Mahony, N.%
+, Campbell, S.%
+, Carvalho, A.%
+, Harapanahalli, S.%
+, Velasco-Hernandez, G.%
+, Krpalkova, L.%
+\BDBL {}Walsh, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{01}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Deep Learning vs. Traditional Computer Vision} {Deep
+  learning vs. traditional computer vision}.{\BBCQ}
+\newblock
+\BIn{} (\BPG~128-144).
+\newblock
+\begin{APACrefDOI} \doi{10.1007/978-3-030-17795-9_10} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -437,6 +623,37 @@ Tobin, J.%
 \APACjournalVolNumPages{CoRR}{abs/1703.06907}{}{}.
 \newblock
 \begin{APACrefURL} \url{http://arxiv.org/abs/1703.06907} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Visin%
+\ \protect \BOthers {.}}{%
+Visin%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+DBLP:journals/corr/VisinKCMCB15}
+\APACinsertmetastar {%
+DBLP:journals/corr/VisinKCMCB15}%
+\begin{APACrefauthors}%
+Visin, F.%
+, Kastner, K.%
+, Cho, K.%
+, Matteucci, M.%
+, Courville, A\BPBI C.%
+\BCBL {}\ \BBA {} Bengio, Y.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {ReNet: {A} Recurrent Neural Network Based Alternative to
+  Convolutional Networks} {Renet: {A} recurrent neural network based
+  alternative to convolutional networks}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{CoRR}{abs/1505.00393}{}{}.
+\newblock
+\begin{APACrefURL} \url{http://arxiv.org/abs/1505.00393} \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

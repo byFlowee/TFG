@@ -7,12 +7,12 @@
 
 \chapter{Results}
 \label{results}
-\textit{This chapter will go through the results of our experimentation with the previously described implementations. Section \ref{sec:no_synt} will review the results when training without synthetic data. Section \ref{sec:with_synth} will focus on the synthetic data experimentation.}
+\textit{This chapter goes through the results of our experimentation with the previously described implementations. Section \ref{sec:no_synt} reviews the results when training without synthetic data. Section \ref{sec:with_synth} focuses on training with synthetic data.}
 
 \section{Training with no synthetic data}
 \label{sec:no_synt}
 
-\begin{figure}[h]
+\begin{figure}[!ht]
 	\centering
 	\begin{tikzpicture}
 	\begin{axis}[width=10cm,xlabel=Epoch, ylabel=Loss, legend style={at={(0.95,0.95)}}, ymin=0.01, ymax=0.04]
@@ -29,3 +29,18 @@
 
 \section{Adding synthetic data to the training dataset}
 \label{sec:with_synth}
+
+\begin{figure}[!ht]
+	\centering
+	\begin{tikzpicture}
+	\begin{axis}[width=10cm,xlabel=Epoch, ylabel=Loss, legend style={at={(0.95,0.95)}}, ymin=0.01, ymax=0.06]
+	\addplot table [mark=none, x=epoch, y=train_loss, col sep=comma] {archivos/mixed.csv};
+	\addlegendentry{Training loss};
+	
+	\addplot table [mark=none, x=epoch, y=val_loss, col sep=comma] {archivos/mixed.csv};
+	\addlegendentry{Validation loss};
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Training and validation loss with mixed real and synthetic data.}
+	\label{fig:loss_mixed}
+\end{figure}

@@ -8,11 +8,11 @@
 \chapter{Materials and Methods}
 \label{metodologia}
 
-\textit{This chapter is organized as follows: Section \ref{sec:software} will analyze some of the software specification used in this thesis, focusing on the 3D Game engine framework and working environments. Then, in Section \ref{sec:hardware} we will review our hardware equipment used for this project.}
+\textit{In this chapter we go over the different materials and methods that were considered in this work. It is organized as follows: Section \ref{sec:software} analyzes some of the software specification used in this thesis, focusing on the 3D Game engine framework and working environments. Then, in Section \ref{sec:hardware} we present our hardware equipment used for this work.}
 
 \section{Software}
 \label{sec:software}
-In order to carry out this project, it was necessary to carefully choose our working environments and programming tools, in this Section, we go through some of our software of choice as well as giving a brief explanation on why were chosen.
+In order to carry out this project, it was necessary to carefully choose our working environments and programming tools, in this Section, we go through some of our software of choice as well as giving a brief explanation on why they were chosen.
 
 \subsection{Unreal Engine 4}
 \gls{ue4} is a very powerful, highly portable game engine, written in C++ and developed by Epic Games\footnote{\url{https://www.unrealengine.com/en-US/}}.
@@ -20,9 +20,9 @@ The main advantages \gls{ue4} offers over other game engines and the reason Unre
 
 \begin{itemize}
 	\item \textbf{Virtual reality support:} VR was a key point when developing the ROX framework since one of the main goals was to allow the user to completely interact with the environment.
-	\item \textbf{Photorealism:} Realism is a key factor when it comes to synthetic data and \gls{ue4} potential to run extremely realistic scenes, such as the one shown in figure \ref{fig:london_apartment}, in real time made it perfect for this purpose.
-	\item \textbf{Blueprints:} Blueprints are one of the tools that \gls{ue4} offers and it allows for quick behavior definitions in the editor without writing a single line of code. This makes it perfect for prototyping and testing.
-	\item \textbf{Community:} \gls{ue4} is currently one of the most popular game engines and it has a rather big community, the official forums and other platforms are very active and the documentation is well maintained. The developing team is very active and they continuously release new versions and bug fixes. 
+	\item \textbf{Photorealism:} Realism is a key factor when it comes to synthetic data and the potential of \gls{ue4} to run extremely realistic scenes, such as the one shown in Figure \ref{fig:london_apartment}, in real time made it suitable for this purpose.
+	\item \textbf{Blueprints:} Blueprints are one of the tools that \gls{ue4} offers, they  allow for quick behavior definitions within the editor. This makes it apt for prototyping and testing.
+	\item \textbf{Community:} \gls{ue4} is currently one of the most popular game engines and it has a rather populous community, the official forums and other platforms are very active and the documentation is well maintained. The developing team is heavily involved and they continuously release new versions and bug fixes. 
 \end{itemize}
 
 \begin{figure}[h]
@@ -34,7 +34,7 @@ The main advantages \gls{ue4} offers over other game engines and the reason Unre
 \footnotetext{\url{https://ue4arch.com/projects/viennese-apartment/}}
 
 \subsection{Visual Studio 2017}
-Visual Studio is an \gls{ide} developed by Microsoft and used for software development. It supports a variety of programming languages, although mainly focuses on C++, C\# and the .NET framework. It includes a code editor, file browser and debugger. It also includes plugins, support for syntax highlighting and comes integrated with IntelliSense, which allows for code completion, quick information of variables and methods, amongst others features.
+Visual Studio is an \gls{ide} developed by Microsoft and used for software development. It supports a variety of programming languages, although it mainly focuses on C++, C\# and the .NET framework. It includes a code editor, file browser and debugger. It also includes plugins, support for syntax highlighting and integration with IntelliSense, which allows for code completion, quick information of variables and methods, amongst other features.
 
 However, the main reason Visual Studio was chosen as the main \gls{ide} for this project is the integration with \gls{ue4}. The \gls{ue4} editor has options to quickly visualize any object from the context menu or the scene in Visual Studio, allowing to make quick changes, recompile and launch in very little time.
 
@@ -47,7 +47,7 @@ However, the main reason Visual Studio was chosen as the main \gls{ide} for this
 
 \subsection{Google Colab}
 \label{sec:colab}
-Google Colaboratory\footnote{\url{https://colab.research.google.com/}} is a free Jupyter\footnote{\url{https://jupyter.org}} notebook environment that runs entirely on the cloud, requires no setup and is powered by Google. Jupyter notebook is a cell based environment that allows to create and share documents containing live code\texttt{}, equations, images and text. It is mostly used with python, however it has integration with other languages such as R, C++, Scheme or Ruby. Its integration within Google Colab makes it a very easy to use tool for prototyping and quick testing, Figure \ref{fig:colab} shows the main user interface.
+Google Colaboratory\footnote{\url{https://colab.research.google.com/}} is a free Jupyter\footnote{\url{https://jupyter.org}} notebook environment that runs entirely on the cloud, requires no setup and is powered by Google. Jupyter notebook is a cell-based environment that allows to create and share documents containing live code\texttt{}, equations, images and text. It is mostly used with Python, however it has integration with other languages such as R, C++, Scheme or Ruby. Its integration within Google Colab makes it a very easy-to-use tool for prototyping and quick testing. Figure \ref{fig:colab} shows the main user interface.
 
 \begin{figure}
 	\centering
@@ -60,67 +60,67 @@ Since it is a free environment one may think its not to powerful hardware wise, 
 The full hardware specification is shown in table \ref{table:colab}.
 
 \subsection{Docker}
-\todo{TODO}
+Docker\footnote{\url{https://www.docker.com}} is a 
 
 \subsection{Frameworks}
-\gls{dl} has been arising in popularity in the last decade and most current state-of-art \gls{ai} algorithms are based on deep architectures. Because of this, multiple \gls{dl} frameworks have been developed to ease the low level implementation of these algorithms.
+\gls{dl} has been arising in popularity in the last decade and the most current state-of-the-art \gls{ai} algorithms are based on deep architectures. Because of this, multiple \gls{dl} frameworks have been developed to ease the low level implementation of these algorithms.
 
 \subsubsection{TensorFlow}
-TensorFlow is a open source library for numerical computation based on the idea of data flow graphs. In TensorFlow, the graph nodes represent the mathematical operations, while the edges represent the multidimensional data arrays (or tensors) flowing between them, Figure \ref{fig:tensorflow} illustrates an example of a flow graph representation.
+TensorFlow\footnote{\url{https://www.tensorflow.org/overview}} is a open source library for numerical computation based on the idea of data flow graphs. In TensorFlow, the graph nodes represent the mathematical operations, while the edges represent the multidimensional data arrays (or tensors) flowing between them, Figure \ref{fig:tensorflow} illustrates an example of a flow graph representation.
 
 \begin{figure}[h]
 	\includegraphics[scale=0.3]{archivos/tensorflow.png}
 	\centering
-	\caption{Tensorflow graph example depicting a simple two-layer convolution + pooling with a fully connected layer for classification at the end.}
+	\caption{TensorFlow graph example depicting a simple two-layer convolution + pooling with a fully connected layer for classification at the end.}
 	\label{fig:tensorflow}
 \end{figure}
 
-TensorFlow was created by the researches at Google Brain for the purpose of conducting machine learning and deep neural network research, its low level nature allows for a very fine-grained framework that can be use to build any architecture from the ground up and the tensor-graph structure also allows for very easy distribution on the CPU-GPU.
+TensorFlow was created by the researchers at Google Brain for the purpose of conducting machine learning and deep neural network research, its low level nature allows for a very fine-grained framework that can be use to build any architecture from the ground up and the tensor-graph structure also allows for very easy data distribution on the CPU-GPU.
 
-In a first approach, TensorFlow was going to be the main framework for this project, but was finally discarded since high level frameworks will ease the work and the low level implementation of the networks falls out of the scope of this project.
+In a first approach, TensorFlow was considered for its use as the main framework for this project, but it was finally discarded since high level frameworks ease the work and a low level implementation of the networks falls out of the scope of this project.
 
 \subsubsection{Keras}
-Keras is a high level framework written in Java that can use TensorFlow, CNTK or Theano as backend. It was developed to be an easy to use framework, allowing for very fast experimentation and prototyping, abstracting the user of some of the more complex low level tasks with a very user friendly interface. This also makes Keras a very good entry framework for beginners that still don't have a solid foundation on deep learning.
+Keras\footnote{\url{https://keras.io}} is a high level framework written in Python that can use TensorFlow, CNTK or Theano as backend. It was developed to be an easy-to-use framework, allowing for very fast experimentation and prototyping, abstracting the user from some of the more complex low level tasks with a very user friendly interface. This also makes Keras a very good entry framework for beginners that still do not have a solid foundation on deep learning.
 
-Keras provides two different APIs for different model building approaches. The Sequential API which allows to simply stack layer after layer, allowing for a very simple and easy to use interface for models with a input to output data flow. The Functional API however allows for more complex models by understanding each layer as a node graph, allowing for different, more complex and non sequential models.
+Keras provides two different \gls{api}s for different model building approaches. The Sequential API allows to simply stack layer after layer with a very simple and easy-to-use interface. This makes it ideal for models with an input to output data flow. The Functional \gls{api}, however, provides a more flexible way for defining models. With this \gls{api} instances of different layers can be created attached to the model, with this approach, more complex and non-sequential models can be defined.
 
-At the start of this project, Keras was used in order to implement simple neural networks with educational purposes since it is a very easy and intuitive framework. We discarded it for the end project since we believe there are better alternatives that allow for more flexibility.
+At the start of this project, Keras was used in order to implement simple neural networks with educational purposes since it is a very easy and intuitive framework. In the end, we discarded it since we believe there are better alternatives that allow for more flexibility.
 
 \subsubsection{PyTorch}
-PyTorch is an open source, Python-based, \gls{gpu}-Ready computing package and machine learning framework, just like other frameworks, it provides Tensors, which can be moved both to the \gls{cpu} and \gls{gpu}, as well as all the algebra and math operations for them, they can also be converted from NumPy and other Tensor libraries.
+PyTorch\footnote{\url{https://pytorch.org}} is an open source, Python-based, \gls{gpu}-Ready computing package and machine learning framework, just like other frameworks, it provides a Tensor datatype together with all the operations to handle them in both the \gls{gpu} and \glsentryshort{cpu}. This data structure is also compatible with NumPy and other Tensor libraries, which makes it very compatible and easy to integrate.
 
-Another PyTorch feature that is worth mentioning is the modularity, writing new modules for a \gls{nn} is very straightforward and they can be written in both native python and other NumPy based libraries or with the torch \gls{api}. Also it has multiple pretrained networks, datasets and well documented examples.
+Another PyTorch feature that is worth mentioning is the modularity, writing new modules for a \gls{nn} is very straightforward and they can be written in both native Python and other NumPy based libraries or with the torch \gls{api}. It also counts with multiple pretrained networks, datasets and well documented examples.
 
-PyTorch is also in continuous development and has been steadily gaining popularity ever since its release back in 2016. In terms of performance, PyTorch is just slightly behind Tensorflow, and easily outperforms other high level frameworks such as Keras.
+PyTorch is also in continuous development and has been steadily gaining popularity ever since its release back in 2016. In terms of performance, PyTorch is just slightly behind TensorFlow, and outperforms\footnote{\url{https://wrosinski.github.io/deep-learning-frameworks/}} other high level frameworks such as Keras.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{archivos/pytorch.png}
 	\centering
-	\caption{Worldwide PyTorch and Tensorflow popularity comparison in Google Search.}
+	\caption{Worldwide PyTorch and TensorFlow popularity comparison in Google Search.}
 	\label{fig:pytorch}
 \end{figure}
 
-PyTorch was the framework of choice for this project since it allows for easy prototyping without losing the flexibility to make architectural modifications to the networks. Its syntax is also very easy for anyone that has experience with python which made it perfect for this project.
+PyTorch was the framework of choice for this project since it allows for easy prototyping without losing the flexibility to make architectural modifications to the networks. Its syntax is also very easy for anyone that has experience with Python which made it perfect for this project.
 
 \section{Hardware}
 \label{sec:hardware}
-It is widely known how computationally demanding \gls{dl} algorithms are, specially when dealing with large amounts of data. Also, in order to smoothly run \gls{ue4} while recording and generating all the output images we need a mid to high end computer. In this section we review the ones that have been mainly used in this work.
+It is widely known how computationally demanding \gls{dl} algorithms are, specially when dealing with large amounts of data. Also, in order to smoothly run \gls{ue4} while recording and generating all the output images we need a mid to high end computer. In this section we review the ones that have been used in this work.
 
 \subsection{Clarke}
 
-The structure of neural networks where multiple data streams are organized in layers allow for very easy paralelization. Because of this GPU's are extremely powerful when executing said algorithms.
+The structure of neural networks where multiple data streams are organized in layers allows for very easy parallelization. Because of this \gls{gpu}s are extremely powerful when executing said algorithms.
 
-The Clarke server was deployed with this in mind and features three different NVIDIA GPUs. The most powerful of them, the Titan X is aimed towards \gls{dl} computing, the Tesla K40 is also used for computational purposes. The last of them is a Quadro 2000 that will only be used for visualization purposes. The full hardware specification for the Clarke server is shown in Figure \ref{table:clarke}.
+The Clarke server was deployed with this in mind and features three different NVIDIA GPUs. The most powerful of them, the Titan X, is aimed towards \gls{dl} computing, the Tesla K40 is also used for computational purposes. The last of them is a Quadro 2000 that is only used for visualization purposes. The full hardware specification for the Clarke server is shown in Figure \ref{table:clarke}.
 
-As for the software, Asimov runs Ubuntu 16.04 with Linux kernel 4.15.0-39-generic for x86\_64 architecture. It also runs Docker, which allows any user to configure its own container with any CUDA / CUDNN version and \gls{dl} framework.
+As for the software, Clarke runs Ubuntu 16.04 with Linux kernel 4.15.0-39-generic for x86\_64 architecture. It also runs Docker, which allows any user to configure its own container with any CUDA / CUDNN version and \gls{dl} framework.
 
-Also, it is worth mentioning  Asimov was configured for remote access using SSH with public/private key pair authentication. The installed versions are OpenSSH 7.2p2 with OpenSSL 1.0.2 and X11 forwarding was configured for visualization purposes.
+It is also worth mentioning that Clarke was configured for remote access using SSH with public/private key pair authentication. The installed versions are OpenSSH 7.2p2 with OpenSSL 1.0.2 and X11 forwarding was configured for visualization purposes.
 
 \begin{table}[h]
 	\centering 
 	\begin{tabular}{c p{7cm}}
 		\hline
-		\multicolumn{2}{c}{Asimov} \\ [0.5ex] 
+		\multicolumn{2}{c}{Clarke} \\ [0.5ex] 
 		\hline
 		Motherboard & Asus X99-A \newline Intel X99 Chipset \newline 4x PCIe 3.0/2.0 x 16(x16, x16/ x16, x16/ x16/ x8) \\ 
 		\hline
@@ -144,7 +144,7 @@ Also, it is worth mentioning  Asimov was configured for remote access using SSH 
 \end{table}
 
 \subsection{Personal Computer}
-During the developing of this work, my personal computer was used in order to run \gls{ue4} and UnrealROX, as well as to generate the data used for the deep learning experimentation. Table \ref{table:pc} shows the full hardware specification.
+During the developing of this work, a personal computer was used in order to run \gls{ue4} and UnrealROX, as well as to generate the data used for the deep learning experimentation. Table \ref{table:pc} shows its full hardware specification.
 
 \begin{table}[h]
 	\centering 
@@ -166,7 +166,7 @@ During the developing of this work, my personal computer was used in order to ru
 		\hline
 
 	\end{tabular}
-	\caption{Hardware specification for my personal computer.}
+	\caption{Hardware specification for the personal computer.}
 	\label{table:pc}
 \end{table}
 
